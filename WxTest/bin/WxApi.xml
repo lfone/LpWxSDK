@@ -1,0 +1,5783 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WxApi</name>
+    </assembly>
+    <members>
+        <member name="T:WxApi.AuthType">
+            <summary>
+            授权类型
+            </summary>
+        </member>
+        <member name="F:WxApi.AuthType.snsapi_base">
+            <summary>
+            静默授权，获取openid
+            </summary>
+        </member>
+        <member name="F:WxApi.AuthType.snsapi_userinfo">
+            <summary>
+            非静默授权，需用户同意。  获取用户详细信息。
+            </summary>
+        </member>
+        <member name="T:WxApi.BaseServices">
+            <summary>
+            基础服务类
+            </summary>
+        </member>
+        <member name="M:WxApi.BaseServices.ValidUrl(System.String)">
+            <summary>
+            接入验证
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.BaseServices.GetAccessToken(System.String,System.String)">
+            <summary>
+            获取AccessToken
+            </summary>
+            <param name="appid"></param>
+            <param name="appSecret"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.BaseServices.GetIpArray(System.String)">
+            <summary>
+            获取微信服务器的ip列表
+            </summary>
+        </member>
+        <member name="M:WxApi.BaseServices.WxUpLoadMedia(System.String,System.String,WxApi.MaterialType)">
+            <summary>
+            微信上传多媒体文件
+            </summary>
+            <param name="filePath">文件绝对路径</param>
+            <param name="accessToken">接口调用凭据</param>
+            <param name="mediaType">媒体类型枚举</param>
+        </member>
+        <member name="M:WxApi.BaseServices.LongUrlToShortUrl(System.String,System.String)">
+            <summary>
+            将一条长链接转成短链接
+            </summary>
+            <param name="longurl">长链接</param>
+            <param name="accessToken">accessToken</param>
+            <returns>包含短连接和错误代码的实体</returns>
+        </member>
+        <member name="T:WxApi.CardType">
+            <summary>
+            卡券类型枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.GENERAL_COUPON">
+            <summary>
+            通用券
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.GROUPON">
+            <summary>
+            团购券
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.DISCOUNT">
+            <summary>
+            折扣券
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.GIFT">
+            <summary>
+            礼品券
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.CASH">
+            <summary>
+            代金券
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.MEMBER_CARD">
+            <summary>
+            会员卡
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.SCENIC_TICKET">
+            <summary>
+            景点门票
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.MOVIE_TICKET">
+            <summary>
+            电影票
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.BOARDING_PASS">
+            <summary>
+            飞机票
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.LUCKY_MONEY">
+            <summary>
+            红包
+            </summary>
+        </member>
+        <member name="F:WxApi.CardType.MEETING_TICKET">
+            <summary>
+            会议门票
+            </summary>
+        </member>
+        <member name="T:WxApi.CardVoucher">
+            <summary>
+            卡券相关处理类
+            </summary>
+        </member>
+        <member name="M:WxApi.CardVoucher.UploadLogo(System.String,System.String)">
+            <summary>
+            上传商户logo
+            </summary>
+            <param name="filePath">文件路径。 支持网络路径</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.ImportStore(System.Collections.Generic.List{WxApi.Store},System.String)">
+            <summary>
+            导入门店
+            </summary>
+        </member>
+        <member name="M:WxApi.CardVoucher.GetStoreList(System.Int32,System.Int32,System.String)">
+            <summary>
+            获取门店列表
+            </summary>
+            <param name="offset">偏移量。 从0开始</param>
+            <param name="count">数量</param>
+        </member>
+        <member name="M:WxApi.CardVoucher.GetCardColors(System.String)">
+            <summary>
+            获取卡券颜色
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.Create(WxApi.SendEntity.Card.BaseCard,System.String)">
+            <summary>
+            创建卡券
+            </summary>
+            <param name="info">卡券信息</param>
+            <param name="cardType">卡券类型</param>
+            <param name="accessToken">全局票据</param>
+        </member>
+        <member name="M:WxApi.CardVoucher.CreateCardQrTicket(System.String,System.String,System.String,System.String,System.Nullable{System.Int32},System.Boolean,System.Nullable{System.Int32},System.Int32)">
+            <summary>
+            创建卡券二维码ticket
+            </summary>
+            <param name="cardId">卡券ID</param>
+            <param name="accessToken">调用凭据</param>
+            <param name="code">指定卡券 code 码，只能被领一次。use_custom_code 字段为 true 的卡券必须填写，非自定义 code 不必填写。</param>
+            <param name="openid">指定领取者的 openid，只有该用户能领取。bind_openid字段为 true 的卡券必须填写， 非自定义 openid 不必填写。</param>
+            <param name="expire">指定二维码的有效时间，范围是 60 ~ 1800 秒。不填默认为永久有效。</param>
+            <param name="is_unique_cide">指定下发二维码，生成的二维码随机分配一个 code，领取后不可再次扫描。填写 true 或 false。默认 false。</param>
+            <param name="balance">红包余额， 以分为单位。 红包类型必填 （LUCKY_MONEY） ，其他卡券类型不填。</param>
+            <param name="outer_id">领取场景值，用于领取渠道的数据统计，默认值为 0，字段类型为整型。用户领取卡券后触发的事件推送中会带上此自定义场景值。</param>
+        </member>
+        <member name="M:WxApi.CardVoucher.GetApiTicket(System.String)">
+            <summary>
+            获取api_ticket
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.Consume(System.String,System.String,System.String)">
+            <summary>
+            卡券核销
+            </summary>
+            <param name="accessToken"></param>
+            <param name="code"></param>
+            <param name="cardId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.TestWhite(System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            设置测试白名单
+            </summary>
+            <param name="accessToken"></param>
+            <param name="openidList"></param>
+            <param name="userList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.Decrypt(System.String,System.String)">
+            <summary>
+            code解码
+            </summary>
+            <param name="accessToken"></param>
+            <param name="encryptCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.GetOutLinkSign(System.String,System.String,System.String)">
+            <summary>
+            获取外链签名
+            </summary>
+            <param name="appscret"></param>
+            <param name="encryptCode"></param>
+            <param name="cardId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.Delete(System.String,System.String)">
+            <summary>
+            删除卡券
+            </summary>
+            <param name="accessToken"></param>
+            <param name="cardId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.GetCardInfo(System.String,System.String)">
+            <summary>
+            获取卡券详情
+            </summary>
+            <param name="accessToken"></param>
+            <param name="cardId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.UpdateCode(System.String,System.String,System.String,System.String)">
+            <summary>
+            更新code
+            </summary>
+            <param name="accessToken"></param>
+            <param name="cardId">卡券ID</param>
+            <param name="code">卡券code</param>
+            <param name="new_code">新code</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.Unavailable(System.String,System.String,System.String)">
+            <summary>
+            设置卡券失效
+            </summary>
+            <param name="accessToken"></param>
+            <param name="code"></param>
+            <param name="cardId">自定义 code 的卡券必填。非自定义 code的卡券不填</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.ModifyStock(System.String,System.String,System.Int32)">
+            <summary>
+            修改库存
+            </summary>
+            <param name="accessToken"></param>
+            <param name="cardId">卡券标示</param>
+            <param name="sum">修改的数量。 正数为增加，负数为减少。</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.UpdateCardField(System.String,System.String,WxApi.CardType,System.Collections.Generic.Dictionary{WxApi.SendEntity.Card.BaseInfoKey,System.Object})">
+            <summary>
+            更新卡券字段（只包括基础信息字段）
+            </summary>
+            <param name="accessToken"></param>
+            <param name="cardId"></param>
+            <param name="cardType">卡券类型</param>
+            <param name="bik">字段键值对</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.UpdateCardField(System.String,System.String,WxApi.CardType,System.Collections.Generic.Dictionary{System.Enum,System.Object})">
+            <summary>
+            更新卡券字段（特殊卡券更新。包括共有的基础字段和私有字段）
+            </summary>
+            <param name="accessToken"></param>
+            <param name="cardId"></param>
+            <param name="cardType">卡券类型</param>
+            <param name="pik">字段键值对</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.ActivateMemberCard(System.String,System.String,System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            激活会员卡
+            </summary>
+            <param name="accessToken"></param>
+            <param name="membership_number">会员卡号</param>
+            <param name="code"></param>
+            <param name="init_bonus">初始化积分</param>
+            <param name="init_balance">初始化余额</param>
+            <param name="cardId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.UpdateMemberCard(System.String,System.String,System.Int32,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            会员卡交易后每次积分及余额变更需通过接口通知微信
+            </summary>
+            <param name="accessToken"></param>
+            <param name="code">要消耗的序列号。</param>
+            <param name="add_bonus">需要变更的积分，扣除积分用“-“表示。 </param>
+            <param name="record_bonus">商家自定义积分消耗记录，不超过 14 个汉字。</param>
+            <param name="add_balance">需要变更的余额，扣除金额用“-”表示。单位为分 </param>
+            <param name="record_balance">商家自定义金额消耗记录，不超过 14 个汉字。 </param>
+            <param name="card_id">要消耗序列号所述的 card_id。 自定义 code 的会员卡必填。 </param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CardVoucher.UpdateMeeting(System.String,System.String,System.Int32,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            更新会议门票接口
+            </summary>
+            <param name="accessToken"></param>
+            <param name="code"></param>
+            <param name="begin_time">开场时间</param>
+            <param name="end_time">结束时间</param>
+            <param name="zone">区域</param>
+            <param name="entrance">入口</param>
+            <param name="seat_number">座位号。</param>
+            <param name="card_id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxApi.Code">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:WxApi.Code.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:WxApi.Code.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:WxApi.Code.CodeInfo">
+             <summary>
+               查找类似 -2	 接口调用时，发生异常
+            -1	 系统繁忙，此时请开发者稍候再试
+            0	 请求成功
+            40001	 获取access_token时AppSecret错误，或者access_token无效。请开发者认真比对AppSecret的正确性，或查看是否正在为恰当的公众号调用接口
+            40002	 不合法的凭证类型
+            40003	 不合法的OpenID，请开发者确认OpenID（该用户）是否已关注公众号，或是否是其他公众号的OpenID
+            40004	 不合法的媒体文件类型
+            40005	 不合法的文件类型
+            40006	 不合法的文件大小
+            40007	 不合法的媒体文件id
+            40008	 不合法的消息类型
+            40009	 不合法的图片文件大小
+            40010	 不合法的语音文件大小
+            40011	 不合法的视频文件大小
+            40012	 不合法的缩略图文件大小
+            40013	 不合法的AppID，请开发者检查AppID的正确性，避免异常字符，注意大小写
+            40014	 不合法的access_token，请开发者认真比对access_token的有效性（如是否过期），或查看是否正在为恰当的公众号调用接口
+            40015 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+             </summary>
+        </member>
+        <member name="P:WxApi.Code.DeliveryCode">
+             <summary>
+               查找类似 邮政EMS	Fsearch_code
+            申通快递	002shentong
+            中通速递	066zhongtong
+            圆通速递	056yuantong
+            天天快递	042tiantian
+            顺丰速运	003shunfeng
+            韵达快运	059Yunda
+            宅急送	064zhaijisong
+            汇通快运	020huitong
+            易迅快递	zj001yixun 的本地化字符串。
+             </summary>
+        </member>
+        <member name="P:WxApi.Code.IndustryCode">
+            <summary>
+              查找类似 {
+             &quot;IT科技&quot;: {
+               &quot;互联网/电子商务&quot;: 1,
+               &quot;IT软件与服务&quot;: 2,
+               &quot;IT硬件与设备&quot;: 3,
+               &quot;电子技术&quot;: 4,
+               &quot;通信与运营商&quot;: 5,
+               &quot;网络游戏&quot;: 6
+             },
+             &quot;金融业&quot;: {
+               &quot;银行&quot;: 7,
+               &quot;基金|理财|信托&quot;: 8,
+               &quot;保险&quot;: 9
+             },
+             &quot;餐饮&quot;: {
+               &quot;餐饮&quot;: 10
+             },
+             &quot;酒店旅游&quot;: {
+               &quot;酒店&quot;: 11,
+               &quot;旅游&quot;: 12
+             },
+             &quot;运输与仓储&quot;: {
+               &quot;快递&quot;: 13,
+               &quot;物流&quot;: 14,
+               &quot;仓储&quot;: 15
+             },
+              &quot;教育&quot;: {
+               &quot;培训&quot;: 16,
+               &quot;院校&quot;: 17
+             },
+              &quot;政府与公共事业&quot;: {
+               &quot;学术科研&quot;: 18,
+               &quot;交警&quot;: 19,
+               &quot;博物馆&quot;: 20,
+               &quot;公共事业|非盈利机构&quot;: 21
+             },
+              &quot;医药护理&quot;: {
+               &quot;医药医疗&quot;: 22,
+                [字符串的其余部分被截断]&quot;; 的本地化字符串。
+            </summary>
+        </member>
+        <!-- 对于成员“P:WxApi.Code.StoreCategory”忽略有格式错误的 XML 注释 -->
+        <member name="M:Tencent.Cryptography.AES_decrypt(System.String,System.String,System.String@)">
+            <summary>
+            解密方法
+            </summary>
+            <param name="Input">密文</param>
+            <param name="EncodingAESKey"></param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:Tencent.Cryptography.chr(System.Int32)">
+            将数字转化成ASCII码对应的字符，用于对明文进行补码
+            
+            @param a 需要转化的数字
+            @return 转化得到的字符
+        </member>
+        <member name="T:WxApi.CustomerServices">
+            <summary>
+            客服消息及多客服相关处理方法
+            </summary>
+        </member>
+        <member name="M:WxApi.CustomerServices.SendText(System.String,System.String,System.String)">
+            <summary>
+            发送文本
+            </summary>
+            <param name="openid"></param>
+            <param name="content"></param>
+            <param name="accessToen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.SendImg(System.String,System.String,System.String)">
+            <summary>
+            发送图片
+            </summary>
+            <param name="openid"></param>
+            <param name="media_id"></param>
+            <param name="accessToen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.SendVoice(System.String,System.String,System.String)">
+            <summary>
+            发送语音消息
+            </summary>
+            <param name="openid"></param>
+            <param name="media_id"></param>
+            <param name="accessToen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.SendVideo(System.String,WxApi.SendEntity.CustomVideo,System.String)">
+            <summary>
+            发送视频消息
+            </summary>
+            <param name="openid"></param>
+            <param name="Video"></param>
+            <param name="accessToen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.SendMusic(System.String,WxApi.SendEntity.CustomMusic,System.String)">
+            <summary>
+            发送音乐消息
+            </summary>
+            <param name="openid"></param>
+            <param name="music"></param>
+            <param name="accessToen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.SendArticle(System.String,WxApi.SendEntity.CustomArticle,System.String)">
+            <summary>
+            发送图文消息
+            </summary>
+            <param name="openid"></param>
+            <param name="article"></param>
+            <param name="accessToen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.SetAccount(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            添加客服
+            </summary>
+            <param name="account">完整客服账号，格式为：账号前缀@公众号微信号，账号前缀最多10个字符，必须是英文或者数字字符。如果没有公众号微信号，请前往微信公众平台设置。</param>
+            <param name="nickName">客服昵称，最长6个汉字或12个英文字符</param>
+            <param name="password">客服账号登录密码</param>
+        </member>
+        <member name="M:WxApi.CustomerServices.UploadHeadImg(System.String,System.String,System.String)">
+            <summary>
+            上传客服头像
+            </summary>
+            <param name="filepath">图片路径，支持网络图片</param>
+            <param name="account">完整客服账号，格式为：账号前缀@公众号微信号</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.DeleteAccount(System.String,System.String)">
+            <summary>
+            删除客服账号
+            </summary>
+        </member>
+        <member name="M:WxApi.CustomerServices.GetKfOnLineList(System.String)">
+            <summary>
+            获取在线客服接待信息
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.GetKfList(System.String)">
+            <summary>
+            获取客服列表
+            </summary>
+        </member>
+        <member name="M:WxApi.CustomerServices.KfSession(System.String,System.String,System.String,WxApi.KfSessionType,System.String)">
+            <summary>
+            客服会话创建与关闭
+            </summary>
+            <param name="kfAccount">客服工号</param>
+            <param name="openId">用户ID</param>
+            <param name="text">附加文本</param>
+            <param name="sessionType">请求的会话状态</param>
+        </member>
+        <member name="M:WxApi.CustomerServices.GetsKfSessionStatus(System.String,System.String)">
+            <summary>
+            获取客户的会话状态
+            </summary>
+            <param name="openId"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.GetKfSessionList(System.String,System.String)">
+            <summary>
+            获取客服的会话列表
+            </summary>
+            <param name="kfAccount">客服工号</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.CustomerServices.GetWaitCaseList(System.String)">
+            <summary>
+            获取未接入会话列表
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxApi.DataCube">
+            <summary>
+            数据统计
+            </summary>
+        </member>
+        <member name="M:WxApi.DataCube.GetUserSummary(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取用户增减数据.最大时间跨度7天
+            </summary>
+        </member>
+        <member name="M:WxApi.DataCube.GetUserCumulate(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取累计用户数据.最大时间跨度7天
+            </summary>
+        </member>
+        <member name="M:WxApi.DataCube.GetArticleSummary(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取图文群发每日数据接口.最大时间跨度1天
+            </summary>
+        </member>
+        <member name="M:WxApi.DataCube.GetArticleTotal(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取图文群发总数据.某天群发的文章，从群发日起到接口调用日（但最多统计发表日后7天数据），每天的到当天的总等数据.最大时间跨度1天
+            </summary>
+            <param name="beginDate"></param>
+            <param name="endDate"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.DataCube.GetArticleUserRead(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取图文统计数据.最大时间跨度3天
+            </summary>
+            <param name="beginDate"></param>
+            <param name="endDate"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.DataCube.GetArticleUserReadHour(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取图文统计分时数据.最大时间跨度1天
+            </summary>
+            <param name="beginDate"></param>
+            <param name="endDate"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.DataCube.GetArticleUserShare(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取图文分享转发数据.最大时间跨度7天
+            </summary>
+        </member>
+        <member name="M:WxApi.DataCube.GetArticleUserShareHour(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取图文分享转发分时数据.最大时间跨度1天
+            </summary>
+        </member>
+        <member name="M:WxApi.DataCube.GetUpstreamMsg(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            获取图文分享转发分时数据.最大时间跨度7天
+            </summary>
+        </member>
+        <member name="T:WxApi.EventType">
+            <summary>
+             事件类型枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.NOEVENT">
+            <summary>
+            非事件类型
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.SUBSCRIBE">
+            <summary>
+            订阅
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.UNSUBSCRIBE">
+            <summary>
+            取消订阅
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.SCAN">
+            <summary>
+            扫描带参数的二维码
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.LOCATION">
+            <summary>
+            地理位置
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.CLICK">
+            <summary>
+            单击按钮
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.VIEW">
+            <summary>
+            链接按钮
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.SCANCODE_PUSH">
+            <summary>
+            扫码推事件
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.SCANCODE_WAITMSG">
+            <summary>
+            扫码推事件且弹出“消息接收中”提示框
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.PIC_SYSPHOTO">
+            <summary>
+            弹出系统拍照发图
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.PIC_PHOTO_OR_ALBUM">
+            <summary>
+            弹出拍照或者相册发图
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.PIC_WEIXIN">
+            <summary>
+            弹出微信相册发图器
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.LOCATION_SELECT">
+            <summary>
+            弹出地理位置选择器
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.TEMPLATESENDJOBFINISH">
+            <summary>
+            模板消息推送
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.MASSSENDJOBFINISH">
+            <summary>
+            群发消息推送
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.KF_CREATE_SESSION">
+            <summary>
+            创建客服会话
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.KF_CLOSE_SESSION">
+            <summary>
+            关闭客服会话
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.KF_SWITCH_SESSION">
+            <summary>
+            转接客服会话
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.MERCHANT_ORDER">
+            <summary>
+            微信小店订单
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.POI_CHECK_NOTIFY">
+            <summary>
+            门店审核事件
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.CARD_PASS_CHECK">
+            <summary>
+            卡券通过审核
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.CARD_NOT_PASS_CHECK">
+            <summary>
+            卡券未通过审核
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.USER_GET_CARD">
+            <summary>
+            用户领取卡券
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.USER_DEL_CARD">
+            <summary>
+            用户删除卡券
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.USER_VIEW_CARD">
+            <summary>
+            进入会员卡事件
+            </summary>
+        </member>
+        <member name="F:WxApi.EventType.USER_CONSUME_CARD">
+            <summary>
+            卡券核销
+            </summary>
+        </member>
+        <member name="M:WxApi.GroupSend.UpLoadNew(System.Collections.Generic.List{WxApi.SendEntity.Article},System.String)">
+            <summary>
+            上传图文消息
+            </summary>
+        </member>
+        <member name="M:WxApi.GroupSend.UpLoadVideo(System.String,System.String,System.String,System.String)">
+            <summary>
+            上传视频消息
+            </summary>
+            <param name="media_id">视频文件媒体ID，此参数需要调用上传多媒体接口获取</param>
+            <param name="title">视频标题</param>
+            <param name="description">视频描述</param>
+        </member>
+        <member name="M:WxApi.GroupSend.BaseSend(System.Object,System.String,System.Int32)">
+            <summary>
+            基础发送接口
+            </summary>
+            <param name="obj">json对象</param>
+            <param name="accessToken">accessToken</param>
+            <param name="sendtype">群发类型，1为按分组群发，2为按openid列表群发，3为预览接口。默认为按分组群发</param>
+        </member>
+        <member name="M:WxApi.GroupSend.Delete(System.String,System.String)">
+            <summary>
+            删除群发
+            </summary>
+            <param name="msg_id">群发消息ID</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendTextByGroup(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            按分组群发文本消息，isall为true时，说明群发所有用户，此时group_id可为空，否则，根据grou_id进行群发
+            </summary>
+            <param name="content">群发内容</param>
+            <param name="accessToken">accessToken</param>
+            <param name="isall">是否群发所有用户</param>
+            <param name="group_id">分组ID</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendImgByGroup(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+             按分组群发图片消息，isall为true时，说明群发所有用户，此时group_id可为空，否则，根据grou_id进行群发
+            </summary>
+            <param name="media_id">图片的媒体ID</param>
+            <param name="accessToken">accessToken</param>
+            <param name="isall">是否群发所有用户</param>
+            <param name="group_id">分组ID</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendVoiceByGroup(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+             按分组群发语音消息，isall为true时，说明群发所有用户，此时group_id可为空，否则，根据grou_id进行群发
+            </summary>
+            <param name="media_id">图片的媒体ID</param>
+            <param name="accessToken">accessToken</param>
+            <param name="isall">是否群发所有用户</param>
+            <param name="group_id">分组ID</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendArticleByGroup(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+             按分组群发图文消息，isall为true时，说明群发所有用户，此时group_id可为空，否则，根据grou_id进行群发
+            </summary>
+            <param name="media_id">图片的媒体ID</param>
+            <param name="accessToken">accessToken</param>
+            <param name="isall">是否群发所有用户</param>
+            <param name="group_id">分组ID</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendVideoByGroup(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+             按分组群发视频消息，isall为true时，说明群发所有用户，此时group_id可为空，否则，根据grou_id进行群发
+            </summary>
+            <param name="media_id">图片的媒体ID</param>
+            <param name="accessToken">accessToken</param>
+            <param name="isall">是否群发所有用户</param>
+            <param name="group_id">分组ID</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendTextByOpenID(System.String,System.String,System.Object)">
+            <summary>
+            按用户列表群发文本消息
+            </summary>
+            <param name="content">群发内容</param>
+            <param name="accessToken">accessToken</param>
+            <param name="touser">如果为数组，则表示openid列表，调用的群发接口，否则表示openid，调用的是预览接口</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendImgByOpenID(System.String,System.String,System.Object)">
+            <summary>
+            按用户列表群发图片消息
+            </summary>
+            <param name="media_id">图片媒体ID</param>
+            <param name="accessToken">accessToken</param>
+            <param name="touser">如果为数组，则表示openid列表，调用的群发接口，否则表示openid，调用的是预览接口</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendVoiceByOpenID(System.String,System.String,System.Object)">
+            <summary>
+            按用户列表群发图片消息
+            </summary>
+            <param name="media_id">语音媒体ID</param>
+            <param name="accessToken">accessToken</param>
+            <param name="touser">如果为数组，则表示openid列表，调用的群发接口，否则表示openid，调用的是预览接口</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendArticleByOpenID(System.String,System.String,System.Object)">
+            <summary>
+            按用户列表群发图文消息
+            </summary>
+            <param name="media_id">图文ID</param>
+            <param name="accessToken">accessToken</param>
+            <param name="touser">如果为数组，则表示openid列表，调用的群发接口，否则表示openid，调用的是预览接口</param>
+        </member>
+        <member name="M:WxApi.GroupSend.SendVideoByOpenID(System.String,System.String,System.Object)">
+            <summary>
+            按用户列表群发视频消息
+            </summary>
+            <param name="media_id">视频ID</param>
+            <param name="accessToken">accessToken</param>
+            <param name="touser">如果为数组，则表示openid列表，调用的群发接口，否则表示openid，调用的是预览接口</param>
+        </member>
+        <member name="M:WxApi.JsApi.GetHsJsApiTicket(System.String)">
+            <summary>
+            获取jsapi_ticket
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.JsApi.GetJsApiSign(System.String,System.String,System.String,System.String)">
+             <summary>
+             获取签名
+            出于安全考虑，开发者必须在服务器端实现签名的逻辑。
+            出于安全考虑，开发者必须在服务器端实现签名的逻辑。
+             </summary>
+             <param name="noncestr">必须与wx.config中的nonceStr相同</param>
+             <param name="jsapi_ticket">jsapi_ticket</param>
+             <param name="timestamp">必须与wx.config中的timestamp相同</param>
+             <param name="url">url必须是调用JS接口页面的完整URL</param>
+             <returns></returns>
+        </member>
+        <member name="T:WxApi.KfSessionType">
+            <summary>
+            客服会话操作类型
+            </summary>
+        </member>
+        <member name="F:WxApi.KfSessionType.create">
+            <summary>
+            创建会话
+            </summary>
+        </member>
+        <member name="F:WxApi.KfSessionType.close">
+            <summary>
+            关闭会话
+            </summary>
+        </member>
+        <member name="T:WxApi.MaterialLib">
+            <summary>
+            素材管理
+            </summary>
+        </member>
+        <member name="M:WxApi.MaterialLib.Add(System.String,System.String,WxApi.MaterialType,System.Boolean,System.String,System.String)">
+            <summary>
+            添加素材。临时素材的有效时间为3天
+            </summary>
+            <param name="filePath">服务器文件的物理路径，可用Request.MapPath将虚拟路径转换为物理路径。也可为网络路径，如：http://XXXX</param>
+            <param name="accessToken">调用凭据</param>
+            <param name="mediaType">媒体类型枚举</param>
+            <param name="IsTemp">是否是临时素材</param>
+            <param name="videotitle">永久视频素材标题</param>
+            <param name="videointroduction">永久视频素材描述</param>
+        </member>
+        <member name="M:WxApi.MaterialLib.AddArticle(System.Collections.Generic.List{WxApi.SendEntity.Article},System.String)">
+            <summary>
+            新增永久图文素材
+            </summary>
+            <param name="articles"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.MaterialLib.GetTempUrl(System.String,System.String)">
+            <summary>
+            获取临时素材的url
+            </summary>
+            <param name="mediaId">素材ID</param>
+            <param name="accessToken">全局接口凭据</param>
+            <returns>url</returns>
+        </member>
+        <member name="M:WxApi.MaterialLib.GetCount(System.String)">
+            <summary>
+            获取永久素材总数。图片和图文消息素材的总数上限为5000，其他素材为1000
+            </summary>
+            <param name="accessToken">全局票据</param>
+            <returns>包括voice_count，video_count，image_count，news_count</returns>
+        </member>
+        <member name="M:WxApi.MaterialLib.GetList(WxApi.MaterialType,System.Int32,System.Int32,System.String)">
+             <summary>
+             获取永久素材列表，会包含公众号在公众平台官网素材管理模块中新建的图文消息、语音、视频等素材（但需要先通过获取素材列表来获知素材的media_id）
+            临时素材无法通过本接口获取
+             </summary>
+             <param name="mediaType">素材类型</param>
+             <param name="index">从全部素材的指定索引开始返回。0表示从第一个素材返回</param>
+             <param name="count">返回素材的数量，取值在1到20之间</param>
+             <param name="accessToken">全局票据</param>
+        </member>
+        <member name="M:WxApi.MaterialLib.Get(System.String,System.String,WxApi.ReceiveEntity.FileStreamInfo@)">
+            <summary>
+            获取永久素材。
+            </summary>
+            <param name="mediaId">媒体ID</param>
+            <param name="accessToken">全局凭证</param>
+            <param name="stream">文件流</param>
+            <returns>当请求的是图文消息时，返回图文消息实体。其他类型的消息则返回文件流</returns>
+        </member>
+        <member name="M:WxApi.MaterialLib.Del(System.String,System.String)">
+            <summary>
+            删除永久素材
+            </summary>
+            <param name="mediaId">mediaId</param>
+            <param name="accessToken">接口调用凭据</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.MaterialLib.Update(System.String,System.String,System.Int32,WxApi.SendEntity.Article)">
+            <summary>
+            修改永久图文素材
+            </summary>
+            <param name="mediaId">图文素材ID</param>
+            <param name="accessToken">调用凭据</param>
+            <param name="index">要更新的文章在图文消息中的位置（多图文消息时，此字段才有意义），第一篇为0</param>
+            <param name="article">图文实体。此处表示的修改后的图文信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:WxApi.Menu">
+            <summary>
+            处理菜单相关的类
+            </summary>
+        </member>
+        <member name="M:WxApi.Menu.Create(WxApi.SendEntity.MenuEntity,System.String)">
+            <summary>
+            创建二维码
+            </summary>
+            <param name="menuEntity">菜单实体</param>
+            <param name="accessToken">accessToken</param>
+            <returns>错误信息实体</returns>
+        </member>
+        <member name="M:WxApi.Menu.Query(System.String)">
+            <summary>
+            查询自定义菜单
+            </summary>
+        </member>
+        <member name="M:WxApi.Menu.Delete(System.String)">
+            <summary>
+            删除自定义菜单
+            </summary>
+        </member>
+        <member name="T:WxApi.MenuType">
+            <summary>
+            自定义菜单分类
+            </summary>
+        </member>
+        <member name="F:WxApi.MenuType.click">
+            <summary>
+            点击推事件
+            </summary>
+        </member>
+        <member name="F:WxApi.MenuType.view">
+            <summary>
+            跳转URL
+            </summary>
+        </member>
+        <member name="F:WxApi.MenuType.scancode_push">
+            <summary>
+            扫码推事件
+            </summary>
+        </member>
+        <member name="F:WxApi.MenuType.scancode_waitmsg">
+            <summary>
+            扫码推事件且弹出“消息接收中”提示框
+            </summary>
+        </member>
+        <member name="F:WxApi.MenuType.pic_sysphoto">
+            <summary>
+            弹出系统拍照发图
+            </summary>
+        </member>
+        <member name="F:WxApi.MenuType.pic_photo_or_album">
+            <summary>
+            弹出拍照或者相册发图
+            </summary>
+        </member>
+        <member name="F:WxApi.MenuType.pic_weixin">
+            <summary>
+            弹出微信相册发图器
+            </summary>
+        </member>
+        <member name="F:WxApi.MenuType.location_select">
+            <summary>
+            弹出地理位置选择器
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.BaseMenuEventMsg">
+            <summary>
+            菜单事件基础实体
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.BaseMsg">
+            <summary>
+            所有消息类型的基类
+            </summary>
+        </member>
+        <member name="M:WxApi.MsgEntity.BaseMsg.ResPicture(WxApi.MsgEntity.EnterParam,System.String)">
+            <summary>
+            回复消息(图片)
+            </summary>
+        </member>
+        <member name="M:WxApi.MsgEntity.BaseMsg.ResVoice(WxApi.MsgEntity.EnterParam,System.String)">
+            <summary>
+            回复消息(语音)
+            </summary>
+        </member>
+        <member name="M:WxApi.MsgEntity.BaseMsg.ResVideo(WxApi.MsgEntity.EnterParam,WxApi.SendEntity.ResVideo)">
+            <summary>
+            回复消息(视频)
+            </summary>
+        </member>
+        <member name="M:WxApi.MsgEntity.BaseMsg.ResMusic(WxApi.MsgEntity.EnterParam,WxApi.SendEntity.ResMusic)">
+            <summary>
+            回复消息(音乐)
+            </summary>
+        </member>
+        <member name="M:WxApi.MsgEntity.BaseMsg.ResArticles(WxApi.MsgEntity.EnterParam,System.Collections.Generic.List{WxApi.SendEntity.ResArticle})">
+            <summary>
+            回复图文
+            </summary>
+        </member>
+        <member name="M:WxApi.MsgEntity.BaseMsg.TransDkf(WxApi.MsgEntity.EnterParam,System.String)">
+            <summary>
+            多客服转发如果指定的客服没有接入能力(不在线、没有开启自动接入或者自动接入已满)，
+            该用户会一直等待指定客服有接入能力后才会被接入，而不会被其他客服接待。建议在指定客服时，先查询客服的接入能力指定到有能力接入的客服，保证客户能够及时得到服务。
+            </summary>
+            <param name="account">客服工号。默认为空</param>
+        </member>
+        <member name="P:WxApi.MsgEntity.BaseMsg.ToUserName">
+            <summary>
+            开发者微信号
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.BaseMsg.FromUserName">
+            <summary>
+            发送方帐号（一个OpenID）
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.BaseMsg.CreateTime">
+            <summary>
+            消息创建时间 （整型）
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.BaseMsg.MsgType">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.BaseMenuEventMsg.EventKey">
+            <summary>
+            事件key值
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.BMsg.FromUser">
+            <summary>
+            发送者标识
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.BMsg.MsgFlag">
+            <summary>
+            消息表示。普通消息时，为msgid，事件消息时，为事件的创建时间
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.BMsg.CreateTime">
+            <summary>
+            添加到队列的时间
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.EnterParam">
+            <summary>
+            微信接入参数
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.EnterParam.IsAes">
+            <summary>
+            是否加密
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.EnterParam.token">
+            <summary>
+            接入token
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.EnterParam.appid">
+             <summary>
+            微信appid
+             </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.EnterParam.EncodingAESKey">
+            <summary>
+            加密密钥
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GetCardEventMsg.FriendUserName">
+            <summary>
+            赠送方账号（一个 OpenID），"IsGiveByFriend”为 1 时填写该参数
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GetCardEventMsg.CardId">
+            <summary>
+            卡券 ID。
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GetCardEventMsg.IsGiveByFriend">
+            <summary>
+            是否为转赠，1 代表是，0 代表否。
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GetCardEventMsg.UserCardCode">
+            <summary>
+            code 序列号。 自定义 code 及非自定义 code的卡券被领取后都支持事件推送。
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GetCardEventMsg.OuterId">
+            <summary>
+            领取场景值，用于领取渠道数据统计。可在生成二维码接口及添加 JS API 接口中自定义该字段的整型值。
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.GroupJobEventMsg">
+            <summary>
+            群发消息推送
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GroupJobEventMsg.MsgID">
+            <summary>
+            群发的消息ID
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GroupJobEventMsg.Status">
+            <summary>
+            发送状态
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GroupJobEventMsg.TotalCount">
+            <summary>
+            group_id下粉丝数；或者openid_list中的粉丝数
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GroupJobEventMsg.FilterCount">
+            <summary>
+            过滤（过滤是指特定地区、性别的过滤、用户设置拒收的过滤，用户接收已超4条的过滤）后，准备发送的粉丝数，原则上，FilterCount = SentCount + ErrorCount
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GroupJobEventMsg.SentCount">
+            <summary>
+            发送成功的粉丝数
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.GroupJobEventMsg.ErrorCount">
+            <summary>
+            发送失败的粉丝数
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.ImgMsg.PicUrl">
+            <summary>
+            图片路径
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.ImgMsg.MsgId">
+            <summary>
+            消息id，64位整型
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.ImgMsg.MediaId">
+            <summary>
+            媒体ID
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.KfEventMsg">
+            <summary>
+            客服会话状态消息推送
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.KfEventMsg.KfAccount">
+            <summary>
+            客服工号
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.LinkMsg">
+            <summary>
+            链接消息
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LinkMsg.MsgId">
+            <summary>
+            缩略图ID
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LinkMsg.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LinkMsg.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LinkMsg.Url">
+            <summary>
+            链接地址
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.LocationEventMsg">
+            <summary>
+            上报地理位置
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LocationEventMsg.Latitude">
+            <summary>
+            地理位置纬度
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LocationEventMsg.Longitude">
+            <summary>
+            地理位置经度
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LocationEventMsg.Precision">
+            <summary>
+            地理位置精度
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.LocationMenuMsg">
+            <summary>
+            弹出地理位置选择器的事件推送
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LocationMsg.Location_X">
+            <summary>
+            地理位置维度
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LocationMsg.Location_Y">
+            <summary>
+            地理位置经度
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LocationMsg.Scale">
+            <summary>
+            地图缩放大小
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LocationMsg.Label">
+            <summary>
+            地理位置信息
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LocationMsg.Url">
+            <summary>
+            链接地址
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.LocationMsg.MsgId">
+            <summary>
+            消息ID
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.MsgHandlerEntity">
+             <summary>
+            消息处理程序实体
+             </summary>
+        </member>
+        <member name="F:WxApi.MsgEntity.MsgHandlerEntity.MsgHandlerEntities">
+            <summary>
+            消息处理程序列表
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.MsgHandlerEntity.MsgType">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.MsgHandlerEntity.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.OrderEventMsg">
+            <summary>
+            微信小店订单事件实体
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.OrderEventMsg.OrderId">
+            <summary>
+            订单ID
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.OrderEventMsg.OrderStatus">
+            <summary>
+            订单状态
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.OrderEventMsg.ProductId">
+            <summary>
+            商品ID
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.OrderEventMsg.SkuInfo">
+            <summary>
+            SKU信息
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.PicMenuEventMsg">
+            <summary>
+            菜单发送图片实体
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.PicMenuEventMsg.Count">
+            <summary>
+            发送的图片数量
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.PicMenuEventMsg.PicMd5SumList">
+            <summary>
+            图片的MD5集合
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.PoiNotifyEventMsg.UniqID">
+            <summary>
+            商户自己内部 ID，即字段中的 sid
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.PoiNotifyEventMsg.PoiId">
+            <summary>
+            微信的门店 ID，微信内门店唯一标示 ID
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.PoiNotifyEventMsg.Result">
+            <summary>
+            审核结果，成功 succ 或失败 fail
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.PoiNotifyEventMsg.Msg">
+            <summary>
+            成功的通知信息，或审核失败的驳回理由
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.ScanMenuEventMsg">
+            <summary>
+            扫码菜单实体
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.ScanMenuEventMsg.ScanType">
+            <summary>
+            扫描类型，一般是qrcode
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.ScanMenuEventMsg.ScanResult">
+            <summary>
+            扫描结果，即二维码对应的字符串信息
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.ScanQrEventMsg">
+            <summary>
+            扫描带参数二维码事件数据实体
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.ScanQrEventMsg.EventKey">
+            <summary>
+            事件KEY值
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.ScanQrEventMsg.Ticket">
+            <summary>
+            二维码的ticket，可用来换取二维码图片
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.SubEventMsg.EventKey">
+            <summary>
+            扫描带参数二维码关注时，二维码的参数
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.SubEventMsg.Ticket">
+            <summary>
+            二维码ticket，可换取二维码
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.TemplateJobEventMsg.MsgID">
+            <summary>
+            消息ID
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.TemplateJobEventMsg.Status">
+            <summary>
+            发送状态
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.TextMsg">
+            <summary>
+            文本实体
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.TextMsg.Content">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.TextMsg.MsgId">
+            <summary>
+            消息id，64位整型
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.DelCardEventMsg.UserCardCode">
+            <summary>
+            商户自定义code值。非自定 code 推送为空串。
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.VideoMsg">
+            <summary>
+            视频消息
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.VideoMsg.ThumbMediaId">
+            <summary>
+            缩略图ID
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.VideoMsg.MsgId">
+            <summary>
+            消息id，64位整型
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.VideoMsg.MediaId">
+            <summary>
+            媒体ID
+            </summary>
+        </member>
+        <member name="T:WxApi.MsgEntity.VoiceMsg">
+            <summary>
+            音频消息
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.VoiceMsg.MsgId">
+            <summary>
+            缩略图ID
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.VoiceMsg.Format">
+            <summary>
+            格式
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.VoiceMsg.MediaId">
+            <summary>
+            媒体ID
+            </summary>
+        </member>
+        <member name="P:WxApi.MsgEntity.VoiceMsg.Recognition">
+            <summary>
+            语音识别结果
+            </summary>
+        </member>
+        <member name="M:WxApi.MsgFactory.LoadMsg(WxApi.MsgEntity.EnterParam,System.Collections.Generic.List{WxApi.MsgEntity.MsgHandlerEntity},System.Action{WxApi.MsgEntity.BaseMsg})">
+            <summary>
+            加载消息，并绑定各消息类型的处理程序
+            </summary>
+            <param name="mheList">消息处理程序列表</param>
+        </member>
+        <member name="M:WxApi.MsgFactory.GetAction(System.Collections.Generic.List{WxApi.MsgEntity.MsgHandlerEntity},WxApi.MsgType,WxApi.EventType)">
+            <summary>
+            根据消息类型，获取回调程序
+            </summary>
+            <param name="actions">回调委托列表</param>
+            <param name="msgType">消息类型</param>
+            <returns>回调委托</returns>
+        </member>
+        <member name="T:WxApi.MsgType">
+            <summary>
+            消息类型枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.MsgType.TEXT">
+             <summary>
+            文本类型
+             </summary>
+        </member>
+        <member name="F:WxApi.MsgType.IMAGE">
+            <summary>
+            图片类型
+            </summary>
+        </member>
+        <member name="F:WxApi.MsgType.VOICE">
+            <summary>
+            语音类型
+            </summary>
+        </member>
+        <member name="F:WxApi.MsgType.VIDEO">
+            <summary>
+            视频类型
+            </summary>
+        </member>
+        <member name="F:WxApi.MsgType.LOCATION">
+            <summary>
+            地理位置类型
+            </summary>
+        </member>
+        <member name="F:WxApi.MsgType.LINK">
+            <summary>
+            链接类型
+            </summary>
+        </member>
+        <member name="F:WxApi.MsgType.EVENT">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="T:WxApi.Pay">
+            <summary>
+            微信支付相关处理方法
+            </summary>
+        </member>
+        <member name="M:WxApi.Pay.UnifiedOrder(WxApi.PayEntity.UnifiedEntity,System.String)">
+            <summary>
+            调用统一下单接口并解析返回的XML
+            </summary>
+            <returns>响应实体</returns>
+        </member>
+        <member name="M:WxApi.Pay.ReFund(WxApi.PayEntity.ReFund,System.String,System.String,System.String)">
+            <summary>
+            退款请求
+            </summary>
+            <param name="reFund">退款实体</param>
+            <param name="key">支付密钥</param>
+            <param name="certpath">证书路径</param>
+            <param name="certpwd">证书密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Pay.QueryReFund(WxApi.PayEntity.QueryRefund,System.String)">
+            <summary>
+            查询退款
+            </summary>
+        </member>
+        <member name="M:WxApi.Pay.SendCoupon(WxApi.PayEntity.SendCoupon,System.String,System.String,System.String)">
+            <summary>
+            代金券与立减优惠
+            </summary>
+            <param name="coupon"></param>
+            <param name="key"></param>
+            <param name="certpath"></param>
+            <param name="certpwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Pay.EPayment(WxApi.PayEntity.EPayment,System.String,System.String,System.String)">
+            <summary>
+            企业付款
+            </summary>
+            <param name="payment"></param>
+            <param name="key"></param>
+            <param name="certpath"></param>
+            <param name="certpwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Pay.QueryOrder(WxApi.PayEntity.QueryOrder,System.String)">
+            <summary>
+            查询订单
+            </summary>
+            <param name="orderQuery">订单查询实体</param>
+            <param name="key">支付密钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Pay.ReverseOrder(WxApi.PayEntity.QueryOrder,System.String,System.String,System.String)">
+            <summary>
+            撤销订单
+            </summary>
+        </member>
+        <member name="M:WxApi.Pay.CloseOrder(WxApi.PayEntity.CloseOrder,System.String)">
+            <summary>
+            关闭订单
+            </summary>
+            <param name="close"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Pay.GetNotifyRes(System.String,System.Action{WxApi.PayEntity.OrderInfo})">
+            <summary>
+            获取通用回调
+            </summary>
+            <param name="key"></param>
+            <param name="callBack"></param>
+        </member>
+        <member name="M:WxApi.Pay.PayRequest``1(System.Object,System.String,System.String,System.String,System.String)">
+            <summary>
+            微信支付接口请求
+            </summary>
+            <typeparam name="T">返回值类型</typeparam>
+            <param name="obj">请求实体</param>
+            <param name="key">支付密钥</param>
+            <param name="url">接口地址</param>
+            <param name="certpath">证书路径，为null时说明不适用证书</param>
+            <param name="certpwd">证书密码</param>
+        </member>
+        <member name="T:WxApi.PayEntity.BasePay">
+             <summary>
+            微信支付基类
+             </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.BasePay.appid">
+            <summary>
+            微信分配的公众账号ID
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.BasePay.mch_id">
+            <summary>
+            微信支付分配的商户号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.BasePay.nonce_str">
+            <summary>
+            随机字符串，不长于32位
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.BasePayRes">
+            <summary>
+            支付接口调用后，响应参数基础类。
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.BasePayRes.return_code">
+            <summary>
+            SUCCESS/FAIL此字段是通信标识，非交易标识，交易是否成功需要查看result_code来判断
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.BasePayRes.return_msg">
+            <summary>
+            返回信息，如非空，为错误原因
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.BasePayRes.sign">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.BasePayRes.result_code">
+            <summary>
+            业务结果
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.BasePayRes.err_code">
+            <summary>
+            错误代码
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.BasePayRes.err_code_des">
+            <summary>
+            错误代码描述 
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.CloseOrder">
+            <summary>
+            关闭订单请求实体
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.CloseOrder.out_trade_no">
+            <summary>
+            商户系统内部的订单号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.mch_appid">
+            <summary>
+            公众账号appid
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.mchid">
+            <summary>
+            商户号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.sub_mch_id">
+            <summary>
+            子商户号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.device_info">
+            <summary>
+            设备号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.nonce_str">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.partner_trade_no">
+            <summary>
+            商户订单号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.check_name">
+            <summary>
+            NO_CHECK：不校验真实姓名 FORCE_CHECK：强校验真实姓名（未实名认证的用户会校验失败，无法转账） OPTION_CHECK：针对已实名认证的用户才校验真实姓名（未实名认证用户不校验，可以转账成功）
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.re_user_name">
+            <summary>
+            收款用户真实姓名。 如果check_name设置为FORCE_CHECK或OPTION_CHECK，则必填用户真实姓名
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.amount">
+            <summary>
+            企业付款金额，单位为分
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.desc">
+            <summary>
+            企业付款描述信息
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.EPayment.spbill_create_ip">
+            <summary>
+            调用接口的机器Ip地址
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.CheckNameOption.NO_CHECK">
+            <summary>
+            不校验真实姓名 
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.CheckNameOption.FORCE_CHECK">
+            <summary>
+            强校验真实姓名（未实名认证的用户会校验失败，无法转账） 
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.CheckNameOption.OPTION_CHECK">
+            <summary>
+            针对已实名认证的用户才校验真实姓名（未实名认证用户不校验，可以转账成功）
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.EPaymentRes">
+            <summary>
+            企业付款实体
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.SendCoupon">
+            <summary>
+            发放代金券实体
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.SendCoupon.coupon_stock_id">
+            <summary>
+            代金券批次ID
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.SendCoupon.openid_count">
+            <summary>
+            openid记录数（目前支持num=1）
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.SendCoupon.partner_trade_no">
+            <summary>
+            商户此次发放凭据号（格式：商户id+日期+流水号），商户侧需保持唯一性
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.SendCoupon.sub_mch_id">
+            <summary>
+            子商户号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.SendCoupon.op_user_id">
+            <summary>
+            操作员
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.SendCoupon.device_info">
+            <summary>
+            设备号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.SendCoupon.version">
+            <summary>
+            协议版本  默认1.0
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.SendCoupon.type">
+            <summary>
+            协议类型 XML【目前仅支持默认XML】
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.JsEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.JsEntity.appId">
+            <summary>
+            公众号id
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.JsEntity.timeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.JsEntity.nonceStr">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.JsEntity.package">
+            <summary>
+            订单详情扩展字符串
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.JsEntity.signType">
+            <summary>
+            签名类型
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.JsEntity.paySign">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.NativeNotify">
+            <summary>
+            模式一扫描二维码回调
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.NativeNotify.openid">
+            <summary>
+            公用户在商户appid下的唯一标识
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.NativeNotify.is_subscribe">
+            <summary>
+            是否关注公众号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.NativeNotify.product_id">
+            <summary>
+             商品ID
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.NativeNotify.sign">
+            <summary>
+             签名
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.NativeRes.prepay_id">
+            <summary>
+            调用统一支付接口生成的预支付 ID
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.NativeEntity">
+             <summary>
+            native支付二维码生成参数
+             </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.NativeEntity.time_stamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.NativeEntity.product_id">
+            <summary>
+             商品ID
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.is_subscribe">
+            <summary>
+            是否订阅
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.trade_type">
+            <summary>
+            交易类型
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.bank_type">
+            <summary>
+            付款银行
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.total_fee">
+            <summary>
+            总金额
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.coupon_fee">
+            <summary>
+            代金券或立减优惠金额 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.coupon_count">
+            <summary>
+            代金券或立减优惠使用数量 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.fee_type">
+            <summary>
+            货币种类
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.transaction_id">
+            <summary>
+            微信支付订单号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.out_trade_no">
+            <summary>
+            商户订单号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.attach">
+            <summary>
+            商家数据包
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.time_end">
+            <summary>
+            支付完成时间
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderInfo.cash_fee">
+            <summary>
+            现金支付金额 
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.CouponInfo">
+            <summary>
+            代金券或立减优惠实体
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.CouponInfo.coupon_batch_id">
+            <summary>
+            代金券或立减优惠批次ID
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.CouponInfo.coupon_id">
+             <summary>
+            代金券或立减优惠ID
+             </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.CouponInfo.coupon_fee">
+            <summary>
+            单个代金券或立减优惠支付金额
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.QueryOrder">
+            <summary>
+            微信支付接口请求实体。 包括查询、撤销
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.QueryOrder.transaction_id">
+            <summary>
+            微信的订单号，优先使用
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.QueryOrder.out_trade_no">
+            <summary>
+            商户系统内部的订单号,transaction_id、 out_trade_no 二选一，如果同时存在优先级：transaction_id> out_trade_no
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.OrderQueryRes">
+            <summary>
+            查询订单状态，返回结果实体
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.OrderQueryRes.trade_state_desc">
+            <summary>
+            交易状态描述 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RefundInfo.coupon_refund_count">
+            <summary>
+            代金券或立减优惠使用数量
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.nonce_str">
+            <summary>
+            随机字符串 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.sign">
+            <summary>
+            签名 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.mch_billno">
+            <summary>
+            商户订单号 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.mch_id">
+            <summary>
+            商户号 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.sub_mch_id">
+            <summary>
+            子商户号 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.wxappid">
+            <summary>
+            公众账号appid  
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.nick_name">
+            <summary>
+            提供方名称  
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.send_name">
+            <summary>
+            商户名称  
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.re_openid">
+            <summary>
+            用户openid  
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.total_amount">
+            <summary>
+            付款金额 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.min_value">
+            <summary>
+            最小红包金额 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.max_value">
+            <summary>
+            最大红包金额.最小金额等于最大金额： min_value=max_value =total_amount 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.total_num">
+            <summary>
+            红包发放总人数 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.wishing">
+            <summary>
+            红包祝福语  
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.client_ip">
+            <summary>
+            Ip地址 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.act_name">
+            <summary>
+            活动名称 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.remark">
+            <summary>
+            备注 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.logo_imgurl">
+            <summary>
+            商户logo的url  
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.share_content">
+            <summary>
+            分享文案  
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.share_url">
+            <summary>
+            分享链接  
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.RedPack.share_imgurl">
+            <summary>
+            分享的图片 
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.ReFund">
+            <summary>
+            退款请求实体
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFund.device_info">
+            <summary>
+            设备号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFund.sign">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFund.transaction_id">
+            <summary>
+            微信订单号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFund.out_trade_no">
+            <summary>
+            商户订单号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFund.out_refund_no">
+            <summary>
+            商户退款单号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFund.total_fee">
+            <summary>
+            总金额
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFund.refund_fee">
+            <summary>
+            退款金额
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFund.op_user_id">
+            <summary>
+            操作员
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFund.refund_fee_type">
+            <summary>
+            货币种类 
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.ReFundRes">
+            <summary>
+            退款请求返回的实体类
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.device_info">
+            <summary>
+            设备号 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.transaction_id">
+            <summary>
+            微信订单号 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.out_trade_no">
+            <summary>
+            商户订单号 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.out_refund_no">
+            <summary>
+            商户退款单号 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.refund_id">
+            <summary>
+            微信退款单号 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.refund_channel">
+            <summary>
+            退款渠道  ORIGINAL—原路退款   BALANCE—退回到余额
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.refund_fee">
+            <summary>
+            退款金额 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.total_fee">
+            <summary>
+            订单总金额
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.fee_type">
+            <summary>
+            订单金额货币种类 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.cash_fee">
+            <summary>
+            现金支付金额 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.cash_refund_fee">
+            <summary>
+            现金退款金额 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.coupon_refund_fee">
+            <summary>
+            代金券或立减优惠退款金额 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.coupon_refund_count">
+            <summary>
+            代金券或立减优惠使用数量 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReFundRes.coupon_refund_id">
+            <summary>
+            代金券或立减优惠ID 
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.ReverseRes">
+            <summary>
+            撤销接口返回实体
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.ReverseRes.recall">
+            <summary>
+            是否需要继续调用撤销，Y-需要，N-不需要
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.ScanPayEntity">
+            <summary>
+            被扫支付接口
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.TradeState.SUCCESS">
+            <summary>
+            支付成功 
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.TradeState.REFUND">
+            <summary>
+            转入退款 
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.TradeState.NOTPAY">
+            <summary>
+            未支付
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.TradeState.CLOSED">
+            <summary>
+            已关闭 
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.TradeState.REVOKED">
+            <summary>
+            已撤销
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.TradeState.USERPAYING">
+            <summary>
+            用户支付中 
+            </summary>
+        </member>
+        <member name="F:WxApi.PayEntity.TradeState.PAYERROR">
+            <summary>
+            支付失败(其他原因，如银行返回失败) 
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.UnifiedEntity">
+            <summary>
+            统一支付接口请求实体
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.device_info">
+            <summary>
+            微信支付分配的终端设备号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.sign">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.body">
+            <summary>
+            商品描述最大长度127
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.detail">
+            <summary>
+            商品详情
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.attach">
+            <summary>
+            附加数据，原样返回
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.out_trade_no">
+            <summary>
+            商户系统内部的订单号,32 个字符内、可包含字母,确保在商户系统唯一,详细说明
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.fee_type">
+            <summary>
+            货币类型 
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.total_fee">
+            <summary>
+            订单总金额，单位为分，不能带小数点
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.spbill_create_ip">
+            <summary>
+            终端IP
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.time_start">
+            <summary>
+            交易起始时间
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.time_expire">
+            <summary>
+            交易结束时间
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.notify_url">
+            <summary>
+            接收微信支付成功通知
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.trade_type">
+            <summary>
+            JSAPI、NATIVE、APP
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.openid">
+            <summary>
+            用户在商户appid下的唯一标识，trade_type为JSAPI 时，此参数必传
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedEntity.product_id">
+            <summary>
+            只在 trade_type 为 NATIVE 时需要填写。此id为二维码中包含的商品ID，商户自行维护。
+            </summary>
+        </member>
+        <member name="T:WxApi.PayEntity.UnifiedRes">
+            <summary>
+            调用统一支付接口后，返回的实体
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedRes.device_info">
+            <summary>
+            设备号
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedRes.prepay_id">
+            <summary>
+            预支付ID
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedRes.trade_type">
+            <summary>
+            交易类型
+            </summary>
+        </member>
+        <member name="P:WxApi.PayEntity.UnifiedRes.code_url">
+            <summary>
+            二维码链接
+            </summary>
+        </member>
+        <member name="M:WxApi.QrCode.CreateTemp(System.Int32,System.Int32,System.String)">
+            <summary>
+            生成临时二维码
+            </summary>
+            <param name="expireSeconds">过期时间，最大不超过1800</param>
+            <param name="sceneId">场景值ID，临时二维码时为32位非0整型</param>
+            <param name="accessToken">accessToken</param>
+            <returns>ticket实体，ticket可以换取二维码，也可以根据url自行生成。</returns>
+        </member>
+        <member name="M:WxApi.QrCode.CreateByID(System.Int32,System.String)">
+            <summary>
+            创建场景值为数字的永久二维码
+            </summary>
+            <param name="sceneId">场景值，有效范围1-100000</param>
+            <param name="accessToken">accessToken</param>
+            <returns>ticket实体，ticket可以换取二维码，也可以根据url自行生成。</returns>
+        </member>
+        <member name="M:WxApi.QrCode.CreateByStr(System.String,System.String)">
+            <summary>
+            创建场景值为数字的永久二维码
+            </summary>
+            <param name="sceneId">场景值，有效范围1-100000</param>
+            <param name="accessToken">accessToken</param>
+            <returns>ticket实体，ticket可以换取二维码，也可以根据url自行生成。</returns>
+        </member>
+        <member name="M:WxApi.QrCode.GetQrByTicket(System.String)">
+            <summary>
+            根据ticket获取二维码的地址
+            </summary>
+            <param name="ticket"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.AccessToken">
+            <summary>
+            全局票据实体
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.ErrorEntity">
+            <summary>
+            错误信息实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.ErrorEntity.ErrCode">
+            <summary>
+            错误编码
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.ErrorEntity.ErrDescription">
+            <summary>
+            错误描述
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.AccessToken.access_token">
+            <summary>
+            AccessToken的值
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.AccessToken.ExpirationTime">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.AccessToken.expires_in">
+            <summary>
+            凭证有效时间，单位：秒
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.CardApiTicket.ExpirationTime">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.CardApiTicket.expires_in">
+            <summary>
+            凭证有效时间，单位：秒
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.CardCode">
+            <summary>
+            code解码
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.CardIds">
+            <summary>
+            卡ID列表
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.CodeInfo">
+            <summary>
+            code信息
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.ConsumeRes">
+            <summary>
+            核销卡券响应实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.ref_date">
+            <summary>
+            数据的日期，需在begin_date和end_date之间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.ref_hour">
+            <summary>
+            数据的小时，包括从000到2300，分别代表的是[000,100)到[2300,2400)，即每日的第1小时和最后1小时
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.int_page_read_user">
+            <summary>
+            图文页（点击群发图文卡片进入的页面）的阅读人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.int_page_read_count">
+            <summary>
+            图文页的阅读次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.ori_page_read_user">
+            <summary>
+            原文页（点击图文页“阅读原文”进入的页面）的阅读人数，无原文页时此处数据为0
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.ori_page_read_count">
+            <summary>
+            原文页的阅读次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.share_user">
+            <summary>
+            分享的人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.share_count">
+            <summary>
+            分享的次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.add_to_fav_user">
+            <summary>
+            收藏的人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserReadHour.add_to_fav_count">
+            <summary>
+            收藏的次数
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DataCube.ArticleUserReadHours">
+            <summary>
+            图文统计分时数据
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserRead.ref_date">
+            <summary>
+            数据的日期，需在begin_date和end_date之间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserRead.int_page_read_user">
+            <summary>
+            图文页（点击群发图文卡片进入的页面）的阅读人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserRead.int_page_read_count">
+            <summary>
+            图文页的阅读次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserRead.ori_page_read_user">
+            <summary>
+            原文页（点击图文页“阅读原文”进入的页面）的阅读人数，无原文页时此处数据为0
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserRead.ori_page_read_count">
+            <summary>
+            原文页的阅读次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserRead.share_user">
+            <summary>
+            分享的人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserRead.share_count">
+            <summary>
+            分享的次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserRead.add_to_fav_user">
+            <summary>
+            收藏的人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserRead.add_to_fav_count">
+            <summary>
+            收藏的次数
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DataCube.ArticleUserReads">
+            <summary>
+            图文群发每日数据
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.stat_date">
+            <summary>
+            数据统计日期
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.target_user">
+            <summary>
+            送达人数，一般约等于总粉丝数（需排除黑名单或其他异常情况下无法收到消息的粉丝）
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.int_page_read_user">
+            <summary>
+            图文页（点击群发图文卡片进入的页面）的阅读人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.int_page_read_count">
+            <summary>
+            图文页的阅读次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.ori_page_read_user">
+            <summary>
+            原文页（点击图文页“阅读原文”进入的页面）的阅读人数，无原文页时此处数据为0
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.ori_page_read_count">
+            <summary>
+            原文页的阅读次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.share_user">
+            <summary>
+            分享的人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.share_count">
+            <summary>
+            分享的次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.add_to_fav_user">
+            <summary>
+            收藏的人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.Details.add_to_fav_count">
+            <summary>
+            收藏的次数
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DataCube.ArticleTotals">
+            <summary>
+            图文群发每日数据
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.ref_date">
+            <summary>
+            数据的日期，需在begin_date和end_date之间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.msgid">
+            <summary>
+            这里的msgid实际上是由msgid（图文消息id）和index（消息次序索引）组成， 例如12003_3， 其中12003是msgid，即一次群发的id消息的； 3为index，假设该次群发的图文消息共5个文章（因为可能为多图文）， 3表示5个中的第3个
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.title">
+            <summary>
+            图文消息的标题
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.int_page_read_user">
+            <summary>
+            图文页（点击群发图文卡片进入的页面）的阅读人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.int_page_read_count">
+            <summary>
+            图文页的阅读次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.ori_page_read_user">
+            <summary>
+            原文页（点击图文页“阅读原文”进入的页面）的阅读人数，无原文页时此处数据为0
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.ori_page_read_count">
+            <summary>
+            原文页的阅读次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.share_user">
+            <summary>
+            分享的人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.share_count">
+            <summary>
+            分享的次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.add_to_fav_user">
+            <summary>
+            收藏的人数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleSummary.add_to_fav_count">
+            <summary>
+            收藏的次数
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DataCube.ArticleSummarys">
+            <summary>
+            图文群发每日数据
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserShareHour.ref_date">
+            <summary>
+            数据的日期，需在begin_date和end_date之间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserShareHour.ref_hour">
+            <summary>
+            数据的小时，包括从000到2300，分别代表的是[000,100)到[2300,2400)，即每日的第1小时和最后1小时
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserShareHour.share_scene">
+            <summary>
+            分享的场景1代表好友转发 2代表朋友圈 3代表腾讯微博 255代表其他
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserShareHour.share_count">
+            <summary>
+            分享的次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserShareHour.share_user">
+            <summary>
+            分享的人数
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DataCube.ArticleUserShareHours">
+            <summary>
+            图文分享转发分时数据
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserShare.ref_date">
+            <summary>
+            数据的日期，需在begin_date和end_date之间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserShare.share_scene">
+            <summary>
+            分享的场景1代表好友转发 2代表朋友圈 3代表腾讯微博 255代表其他
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserShare.share_count">
+            <summary>
+            分享的次数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.ArticleUserShare.share_user">
+            <summary>
+            分享的人数
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DataCube.ArticleUserShares">
+            <summary>
+            图文分享转发数据
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.CardIdInfo">
+            <summary>
+            创建卡券时，返回的实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.CardIdInfo.card_id">
+            <summary>
+            卡券ID
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.CardQrTicket">
+            <summary>
+            获取二维码ticket时返回的实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.CardQrTicket.ticket">
+            <summary>
+            获取二维码的ticket。凭借此ticket可以在有效时间内换取二维码
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.UpstreamMsg.msg_type">
+            <summary>
+            消息类型，代表含义如下：1代表文字 2代表图片 3代表语音 4代表视频 6代表第三方应用消息（链接消息）
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.UpstreamMsg.msg_user">
+            <summary>
+            上行发送了（向公众号发送了）消息的用户数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.UpstreamMsg.msg_count">
+            <summary>
+            上行发送了消息的消息总数
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DataCube.UpstreamMsgs">
+            <summary>
+            消息发送概况数据
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DeliveryEntity">
+            <summary>
+            快递公司列表
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.MemberCardResult">
+            <summary>
+            会员卡交易接口返回实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MemberCardResult.result_bonus">
+            <summary>
+            当前用户积分总额
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MemberCardResult.result_balance">
+            <summary>
+            当前用户预存总金额
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MemberCardResult.openid">
+            <summary>
+            用户 openid
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.PicUrl">
+             <summary>
+            上传图片接口返回URL实体。  
+             </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.DeliveryIDEntity">
+            <summary>
+            增加邮费模版接口返回实体
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.DeliveryInfoRev">
+            <summary>
+            运费模版信息
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.DeliveryList">
+            <summary>
+            运费模版列表
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.GoodsCategoryList">
+            <summary>
+            获取指定分类的所有子分类接口实体
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.KfList">
+            <summary>
+            获取客服基本信息接口返回实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.KfInfo.kf_account">
+            <summary>
+            完整客服账号，格式为：账号前缀@公众号微信号
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.KfInfo.kf_headimgurl">
+            <summary>
+            客服头像
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.KfInfo.kf_id">
+            <summary>
+            客服工号
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.KfInfo.kf_nick">
+            <summary>
+            客服昵称
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.KfOnLineList">
+            <summary>
+            多客服在线列表
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OnLineInfo.kf_account">
+            <summary>
+            完整客服账号，格式为：账号前缀@公众号微信号
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OnLineInfo.status">
+            <summary>
+            客服在线状态 1：pc在线，2：手机在线。若pc和手机同时在线则为 1+2=3
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OnLineInfo.kf_id">
+            <summary>
+            客服工号
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OnLineInfo.auto_accept">
+            <summary>
+            客服设置的最大自动接入数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OnLineInfo.accepted_case">
+            <summary>
+            客服当前正在接待的会话数
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.BaseEntity">
+            <summary>
+            基础实体，映射只包含ID，和Name两个属性的对象
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.GroupDetail.group_id">
+            <summary>
+            分组ID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.GroupDetail.group_name">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.GroupDetail.product_list">
+            <summary>
+            商品ID列表
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.GroupList">
+            <summary>
+            分组列表实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderRev.order">
+            <summary>
+            订单信息
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.order_id">
+            <summary>
+            订单ID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.order_status">
+            <summary>
+            订单状态
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.order_total_price">
+            <summary>
+            订单总价格(单位 : 分)
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.order_create_time">
+            <summary>
+            订单创建时间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.order_express_price">
+            <summary>
+            订单运费价格(单位 : 分)
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.buyer_openid">
+            <summary>
+            买家微信OPENID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.buyer_nick">
+            <summary>
+            买家微信昵称
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.receiver_name">
+            <summary>
+            收货人姓名
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.receiver_province">
+            <summary>
+            收货地址省份
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.receiver_city">
+            <summary>
+            收货地址城市
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.receiver_zone">
+            <summary>
+            收货地址区/县
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.receiver_address">
+            <summary>
+            收件人详细地址
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.receiver_mobile">
+            <summary>
+            收件人手机号
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.receiver_phone">
+            <summary>
+            收件人固定电话
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.product_id">
+            <summary>
+            商品ID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.product_name">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.product_price">
+            <summary>
+            商品价格（单位：分）
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.product_sku">
+            <summary>
+            商品SKU
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.product_count">
+            <summary>
+            商品个数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.product_img">
+            <summary>
+            商品图片
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.delivery_id">
+            <summary>
+            运单ID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.delivery_company">
+            <summary>
+            物流公司编码
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.OrderInfo.trans_id">
+            <summary>
+            交易ID
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.ShelfId">
+            <summary>
+            增加货架时，返回的实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.ShelfId.shelf_id">
+            <summary>
+            货架ID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.ShelfInfo.shelf_id">
+            <summary>
+            货架ID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.ShelfInfo.shelf_banner">
+            <summary>
+            货架招牌图片Url(图片需调用图片上传接口获得图片Url填写至此，否则添加货架失败，建议尺寸为640*120，仅控件1-4有banner，控件5没有banner)
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.ShelfInfo.shelf_name">
+            <summary>
+            货架名
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.Shelfs">
+            <summary>
+            货架列表
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.StoreCategory.sub">
+            <summary>
+            子列表
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.sid">
+            <summary>
+            商户自定义id。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.business_name">
+            <summary>
+            门店名称.仅为商户名，如：国美.不应包含地区、店号等信息，错误示例：北京国美
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.branch_name">
+            <summary>
+            分店名称（不应包含地区信息、不应与门店名重复，错误示例：北京王府井店）
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.province">
+            <summary>
+            门店所在的省份（直辖市填城市名,如：北京市）
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.city">
+            <summary>
+            门店所在的城市
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.district">
+            <summary>
+            门店所在地区
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.address">
+            <summary>
+            门店所在的详细街道地址（不要填写省市信息）
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.telephone">
+            <summary>
+            门店的电话（纯数字，区号、分机号均由“-”隔开）
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.categories">
+            <summary>
+            门店的类型不同级分类用“,”隔开，如：美食，川菜，火锅
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.offset_type">
+            <summary>
+            坐标类型，1 为火星坐标（目前只能选 1） 
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.longitude">
+            <summary>
+            门店所在地理位置的经度 
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.latitude">
+            <summary>
+            门店所在地理位置的纬度
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.photo_list">
+            <summary>
+            图片列表，url 形式，可以有多张图片，尺寸为640*340px。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.recommend">
+            <summary>
+            推荐品，餐厅可为推荐菜；酒店为推荐套房；景点为推荐游玩景点等，针对自己行业的推荐内容
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.special">
+            <summary>
+            特色服务，如免费 wifi，免费停车，送货上门等商户能提供的特色功能或服务
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.introduction">
+            <summary>
+            商户简介，主要介绍商户信息等
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.open_time">
+            <summary>
+            营业时间，24 小时制表示，用“-”连接，如8:00-20:00
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseStoreInfo.avg_price">
+            <summary>
+            人均价格，大于 0 的整数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.StoreInfo.available_state">
+            <summary>
+            门店是否可用状态。1 表示系统错误、2 表示审核中、3 审核通过、4 审核驳回。当该字段为 1、2、4 状态时，poi_id 为空
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.StoreInfo.update_status">
+            <summary>
+            扩展字段是否正在更新中。1 表示扩展字段正在更新中，尚未生效，不允许再次更新； 0 表示扩展字段没有在更新中或更新已生效，可以再次更新
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Business">
+            <summary>
+            门店信息实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.UserCumulate.ref_date">
+            <summary>
+            取消关注的用户数量，new_user减去cancel_user即为净增用户数量
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.UserCumulate.cumulate_user">
+            <summary>
+            总用户量
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DataCube.UserCumulates">
+            <summary>
+            累计用户数据
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.UserSummary.ref_date">
+            <summary>
+            数据的日期
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.UserSummary.user_source">
+            <summary>
+            用户的渠道，数值代表的含义如下：0代表其他 30代表扫二维码 17代表名片分享 35代表搜号码（即微信添加朋友页的搜索） 39代表查询微信公众帐号 43代表图文页右上角菜单
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.UserSummary.new_user">
+            <summary>
+            新增的用户数量
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.DataCube.UserSummary.cancel_user">
+            <summary>
+            取消关注的用户数量，new_user减去cancel_user即为净增用户数量
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.DataCube.UserSummarys">
+            <summary>
+            用户增减数据
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.BaseInfoKey">
+            <summary>
+            卡券可更新基础字段枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.logo_url">
+            <summary>
+            卡券的商户 logo。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.notice">
+            <summary>
+            使用提醒。（一句话描述，展示在首页）
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.description">
+            <summary>
+            使用说明。长文本描述，可以分行。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.service_phone">
+            <summary>
+            客服电话。 
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.color">
+            <summary>
+            券颜色。按色彩规范标注填写 Color010-Color100
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.location_id_list">
+            <summary>
+            门店 id 列表。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.custom_url_name">
+            <summary>
+            自定义跳转入口的名字。 
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.custom_url">
+            <summary>
+            自定义跳转的 url。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.custom_url_sub_title">
+            <summary>
+            显示在入口右侧的 tips，长度限制在 6 个汉字内。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.promotion_url_name">
+            <summary>
+            营销场景的自定义入口。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.promotion_url">
+            <summary>
+            入口跳转外链的地址链接。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.promotion_url_sub_title">
+            <summary>
+            显示在入口右侧的 tips，长度限制在 6 个汉字内。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.code_type">
+            <summary>
+            code 类型
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.use_limit">
+            <summary>
+            用券限制
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.get_limit">
+            <summary>
+            领券限制
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.can_give_friend">
+            <summary>
+            是否可转增
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.can_share">
+            <summary>
+            是否可分享
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BaseInfoKey.date_info">
+            <summary>
+            卡券日期
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.DateInfoKey">
+            <summary>
+            卡券日期字段枚举。使用日期，有效期时间修改仅支持有效区间的扩大。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.DateInfoKey.type">
+            <summary>
+            1：固定日期区间，仅支持更改 type 为 1 的时间戳，暂不支持 type2 的修改。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.DateInfoKey.begin_timestamp">
+            <summary>
+            固定日期区间专用，表示起用时间。（单位为秒）
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.DateInfoKey.end_timestamp">
+            <summary>
+            固定日期区间专用，表示结束时间。结束时间仅支持往后延长。
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.MemberCardKey">
+            <summary>
+            会员卡可修改字段枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.MemberCardKey.bonus_cleared">
+            <summary>
+            积分清零规则
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.MemberCardKey.bonus_rules">
+            <summary>
+            积分规则
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.MemberCardKey.balance_rules">
+            <summary>
+            储值说明 
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.MemberCardKey.prerogative">
+            <summary>
+            特权说明 
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.MemberCardKey.base_info">
+            <summary>
+            基础信息
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.BoardingPassKey">
+            <summary>
+            飞机票可修改字段枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BoardingPassKey.departure_time">
+            <summary>
+            起飞时间
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BoardingPassKey.landing_time">
+            <summary>
+            降落时间 
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BoardingPassKey.gate">
+            <summary>
+            登机口。如发生登机口变更，建议商家实时调用该接口变更。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BoardingPassKey.boarding_time">
+            <summary>
+            登机时间，只显示“时分”不显示日期，按时间戳格式填写。如发生登机时间变更，建议商家实时调用该接口变更。
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.BoardingPassKey.base_info">
+            <summary>
+            基础信息
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.ScenicTicketKey">
+            <summary>
+            景点门票可修改字段枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.ScenicTicketKey.guide_url">
+            <summary>
+            导览图 url
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.ScenicTicketKey.base_info">
+            <summary>
+            基础信息
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.MovieTicketKey">
+            <summary>
+            电影票可修改字段枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.MovieTicketKey.detail">
+            <summary>
+            电影票详情 
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.MovieTicketKey.base_info">
+            <summary>
+            基础信息
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.MeetingTicketKey">
+            <summary>
+            会议可修改字段枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.MeetingTicketKey.map_url">
+            <summary>
+            会场导览图
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.MeetingTicketKey.base_info">
+            <summary>
+            基础信息
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.CardExt">
+            <summary>
+            卡券扩展字段
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.CardExt.balance">
+            <summary>
+            红包余额，以分为单位。红包类型必填（LUCKY_MONEY），其他卡券类型不填。
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.ChooseCard">
+            <summary>
+            卡券签名cardSign参数实体
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.DeliveryTemplateInfo">
+            <summary>
+            邮费模板信息实体
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.DeliveryTemplate">
+            <summary>
+            运费模版
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.DeliveryTemplate.Name">
+            <summary>
+            邮费模板名称
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.DeliveryTemplate.Assumer">
+            <summary>
+            支付方式(0-买家承担运费, 1-卖家承担运费)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.DeliveryTemplate.Valuation">
+            <summary>
+            计费单位(0-按件计费, 1-按重量计费, 2-按体积计费，目前只支持按件计费，默认为0)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.DeliveryTemplate.TopFee">
+            <summary>
+            具体运费计算
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ModProduct">
+             <summary>
+            分组商品信息
+             </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ModProduct.product_id">
+            <summary>
+            商品ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ModProduct.mod_action">
+            <summary>
+            修改操作(0-删除, 1-增加)
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.ProductRevEntity">
+            <summary>
+            根据商品ID获取商品详细信息返回实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Shop.ProductRevEntity.product_info">
+            <summary>
+            商品详细信息
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.PropertyList">
+            <summary>
+            分类属性列表
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Shop.SkuList">
+            <summary>
+            分类的SKU列表
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.WaitCaseList">
+            <summary>
+            未接入会话列表
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.WaitCaseInfo.createtime">
+            <summary>
+            会话接入的时间，Unix时间戳
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.WaitCaseInfo.CreateTime">
+            <summary>
+            用户来访时间，UNIX时间戳
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.WaitCaseInfo.kf_account">
+            <summary>
+            指定接待的客服，为空表示未指定客服
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.KfSessionList">
+            <summary>
+            客服会话列表
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.SessionInfo.createtime">
+            <summary>
+            会话接入的时间，Unix时间戳
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.SessionInfo.CreateTime">
+            <summary>
+            会话接入的时间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.KfSessionStatus.createtime">
+            <summary>
+            会话接入的时间，Unix时间戳
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.KfSessionStatus.kf_account">
+            <summary>
+            正在接待的客服，为空表示没有人在接待
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.KfSessionStatus.CreateTime">
+            <summary>
+            会话接入的时间
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.RecordList">
+            <summary>
+            客服聊天记录接口实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.RecordInfo.worker">
+            <summary>
+            客服账号
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.RecordInfo.openid">
+            <summary>
+            用户的标识，对当前公众号唯一
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.RecordInfo.opercode">
+            <summary>
+            操作ID（会话状态）
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.RecordInfo.operstr">
+            <summary>
+            会话状态描述
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.RecordInfo.time">
+            <summary>
+            操作时间，UNIX时间戳
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.RecordInfo.text">
+            <summary>
+            聊天记录
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.AddressSign">
+            <summary>
+            共享地址签名参数实体
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.BaseCard">
+            <summary>
+            卡券基础信息类
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseCard.base_info">
+            <summary>
+            基础信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Sku.quantity">
+            <summary>
+            卡券库存的数量（不支持填写0或无限大）
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.DateInfo">
+            <summary>
+            卡券日期信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.DateInfo.type">
+            <summary>
+            使用时间的类型，仅支持选择一种时间类型的字段填入。1：固定日期区间，2：固定时长（自领取后按天算）
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.DateInfo.begin_timestamp">
+            <summary>
+            type 为 1 时专用， 表示起用时间。  unix时间戳
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.DateInfo.end_timestamp">
+            <summary>
+            type 为 1 时专用， 表示结束时间。  unix时间戳
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.DateInfo.fixed_term">
+            <summary>
+            type 为 2 时专用，表示自领取后多少天内有效。（单位为天）领取后当天有效填写 0。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.DateInfo.fixed_begin_term">
+            <summary>
+            type 为 2 时专用，表示自领取后多少天开始生效。（单位为天）领取后当天生效填写 0。
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.CodeType">
+            <summary>
+            code码展示类型
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CodeType.CODE_TYPE_TEXT">
+            <summary>
+            文本
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CodeType.CODE_TYPE_BARCODE">
+            <summary>
+            一维码
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CodeType.CODE_TYPE_QRCODE">
+            <summary>
+            二维码
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CodeType.CODE_TYPE_ONLY_QRCODE">
+            <summary>
+            二维码无code显示
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CodeType.CODE_TYPE_ONLY_BARCODE">
+             <summary>
+            一维码无code显示
+             </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.BaseInfo">
+            <summary>
+            卡券基本信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.logo_url">
+            <summary>
+            卡券的商户 logo，尺寸为300*300。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.code_type">
+            <summary>
+            code 码展示类型。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.brand_name">
+            <summary>
+            商户名字,字数上限为 12 个汉字。（填写直接提供服务的商户名，第三方商户名填写在 source 字段）
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.title">
+            <summary>
+            券名，字数上限为 9 个汉字。(建议涵盖卡券属性、服务及金额)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.sub_title">
+            <summary>
+            券名的副标题， 字数上限为 18 个汉字。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.color">
+            <summary>
+            券颜色。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.notice">
+            <summary>
+            使用提醒，字数上限为 12 个汉字。（一句话描述，展示在首页，示例：请出示二维码核销卡券）
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.description">
+            <summary>
+            使用说明。长文本描述，可以分行，上限为 1000 个汉字。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.date_info">
+            <summary>
+            使用日期，有效期的信息。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.location_id_list">
+            <summary>
+            门店位置 ID。商户需在 mp 平台上录入门店信息或调用批量导入门店信息接口获取门店位置 ID。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.use_custom_code">
+            <summary>
+            是否自定义 code 码。填写 true或 false，不填代表默认为 false。该字段需单独申请权限
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.bind_openid">
+            <summary>
+            是否指定用户领取，默认为否
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.can_share">
+            <summary>
+            领取卡券原生页面是否可分享。默认为true
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.can_give_friend">
+            <summary>
+            是否可转增。默认为true
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.get_limit">
+            <summary>
+            每人最大领取次数，不填写默认等于库存
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.service_phone">
+            <summary>
+            客服电话
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.source">
+            <summary>
+            第三方来源名，例如同程旅游、格瓦拉。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.custom_url_name">
+            <summary>
+            商户自定义入口名称，custom_url 字段共同使用，长度限制在 5 个汉字内。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.custom_url">
+            <summary>
+            商户自定义入口跳转外链的地址链接,跳转页面内容需与自定义cell 名称保持匹配。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.custom_url_sub_title">
+            <summary>
+            显示在入口右侧的 tips，长度限制在 6 个汉字内。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.promotion_url_name">
+            <summary>
+            营销场景的自定义入口
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.promotion_url">
+            <summary>
+            入口跳转外链的地址链接
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.promotion_url_sub_title">
+            <summary>
+            显示在入口右侧的 tips，长度限制在 6 个汉字内。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.status">
+            <summary>
+            获取卡券详情时的字段，表示卡券的状态。  创建卡券时无效
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.BaseInfo.id">
+            <summary>
+            获取卡券详情时的字段，表示卡券的card_id。  创建卡券时无效
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CardStatus.CARD_STATUS_NOT_VERIFY">
+            <summary>
+            待审核
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CardStatus.CARD_STATUS_VERIFY_FALL">
+            <summary>
+            审核失败
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CardStatus.CARD_STATUS_VERIFY_OK">
+            <summary>
+            通过审核
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CardStatus.CARD_STATUS_USER_DELETE">
+            <summary>
+            卡券被用户删除
+            </summary>
+        </member>
+        <member name="F:WxApi.SendEntity.Card.CardStatus.CARD_STATUS_DISPATCH">
+            <summary>
+            在公众平台投放过的卡券
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.CardColors">
+            <summary>
+            卡券最新颜色列表
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.CardColors.colors">
+            <summary>
+            颜色列表
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Color.name">
+            <summary>
+            颜色名
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Color.value">
+            <summary>
+            颜色值
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.ImStoreEntity">
+            <summary>
+            导入门店时的返回实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.ImStoreEntity.location_id_list">
+            <summary>
+            门店ID列表(为-1时，说明插入失败，请核查必填字段后单独调用接口导入)
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.LogoUrlEntity">
+            <summary>
+            上传logo返回值实体
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.MaterialCount">
+            <summary>
+            永久素材总数实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MaterialCount.voice_count">
+            <summary>
+            语音总数量
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MaterialCount.video_count">
+            <summary>
+            视频总数量
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MaterialCount.image_count">
+            <summary>
+            图片总数量
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MaterialCount.news_count">
+            <summary>
+            图文总数量
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.MaterialList">
+            <summary>
+            获取素材列表时，返回的实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MaterialItem.update_time">
+            <summary>
+            素材的最后更新时间
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MaterialItem.name">
+            <summary>
+            请求类型为非图文时有效
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MaterialItem.content">
+            <summary>
+            图文内容（请求类型为news时有效）
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MaterialItemNews.news_item">
+            <summary>
+            多图文列表
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.MaterialNews">
+            <summary>
+            获取永久素材时，当请求的素材为图文消息时，返回的实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.MaterialNews.news_item">
+            <summary>
+            多图文列表
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.FileStreamInfo">
+            <summary>
+            文件流信息
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.FileStreamInfo.FileName">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.QueryGroupEntity">
+            <summary>
+            根据openid查询分组ID返回的实体
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.StoresEntity">
+            <summary>
+            获取门店列表时的实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.StoresEntity.location_list">
+            <summary>
+            门店列表
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.StoresEntity.count">
+            <summary>
+            拉取门店数量
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.Location">
+            <summary>
+            门店信息
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Location.location_id">
+            <summary>
+            门店ID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Location.business_name">
+            <summary>
+            门店全称
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Location.branch_name">
+            <summary>
+            分店名
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Location.phone">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Location.address">
+            <summary>
+            详细地址
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Location.longitude">
+            <summary>
+            经度
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.Location.latitude">
+            <summary>
+            纬度
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.UserGroupEntity">
+            <summary>
+            用户分组实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserGroupEntity.id">
+            <summary>
+            分组ID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserGroupEntity.name">
+            <summary>
+            分组名
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserGroupEntity.count">
+            <summary>
+            分组内用户数量
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.SemanticErr">
+            <summary>
+            语义理解错误信息实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.SemanticErr.ErrCode">
+            <summary>
+            错误编码
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.SemanticErr.ErrDescription">
+            <summary>
+            错误描述
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.GroupSendEntity">
+            <summary>
+            群发接口返回值
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.GroupSendEntity.msg_id">
+             <summary>
+            消息ID
+             </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.GroupStatus">
+            <summary>
+            群发状态
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.GroupStatus.msg_id">
+            <summary>
+            群发消息后返回的消息id
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.GroupStatus.msg_status">
+            <summary>
+            消息发送后的状态，SEND_SUCCESS表示发送成功
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.GroupUpLoadEntity">
+            <summary>
+            群发时，上传媒体消息时的返回实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.GroupUpLoadEntity.type">
+            <summary>
+            媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb）
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.GroupUpLoadEntity.media_id">
+            <summary>
+            媒体文件/图文消息上传后获取的唯一标识
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.JsApiTicket">
+            <summary>
+            jsapi中。Ticket实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.JsApiTicket.ticket">
+            <summary>
+            ticket
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.JsApiTicket.expires_in">
+            <summary>
+            有效期时间。单位秒
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.JsApiTicket.expires_time">
+            <summary>
+            失效时间
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.QrTicket">
+            <summary>
+            创建二维码时，返回实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.QrTicket.ticket">
+            <summary>
+            获取的二维码ticket，凭借此ticket可以在有效时间内换取二维码。
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.QrTicket.expire_seconds">
+            <summary>
+            二维码的有效时间，以秒为单位。最大不超过1800。
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.QrTicket.url">
+            <summary>
+            二维码图片解析后的地址，开发者可根据该地址自行生成需要的二维码图片
+            </summary>  
+        </member>
+        <member name="T:WxApi.ReceiveEntity.ShortUrl">
+            <summary>
+            短链接实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.ShortUrl.short_url">
+            <summary>
+            短链接
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.TemplateID">
+            <summary>
+            获取模板ID返回实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.TemplateID.template_id">
+            <summary>
+            模板ID
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.TemplateMsg">
+            <summary>
+            模板消息调用后，返回实体
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.UserGroups">
+            <summary>
+            用户分组列表
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserInfo.subscribe">
+            <summary>
+            是否关注
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserInfo.nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserInfo.sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserInfo.language">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserInfo.city">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserInfo.province">
+            <summary>
+            广东
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserInfo.country">
+            <summary>
+            中国
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserInfo.headimgurl">
+            <summary>
+            图像
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserInfo.subscribe_time">
+            <summary>
+            关注时间
+            </summary>
+        </member>
+        <member name="T:WxApi.SemanticErrCode">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:WxApi.SemanticErrCode.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:WxApi.SemanticErrCode.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:WxApi.SemanticErrCode.ErrCode">
+             <summary>
+               查找类似 0 请求正常，有语义结果
+            7000000 请求正常， 无语义结果
+            7000001 缺失请求参数
+            7000002 signature 参数无效
+            7000003 地理位置相关配置 1 无效
+            7000004 地理位置相关配置 2 无效
+            7000005 请求地理位置信息失败
+            7000006 地理位置结果解析失败
+            7000007 内部初始化失败
+            7000008 非法 appid（获取密钥失败）
+            7000009 请求语义服务失败
+            7000010 非法 post 请求
+            7000011 post 请求 json 字段无效
+            7000030 查询 query 太短
+            7000031 查询 query 太长
+            7000032 城市、经纬度信息缺失
+            7000033 query 请求语义处理失败
+            7000034 获取天气信息失败
+            7000035 获取股票信息失败
+            7000036 utf8 编码转换失败 的本地化字符串。
+             </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Article">
+            <summary>
+            图文素材图文项实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Article.thumb_media_id">
+            <summary>
+            图文消息缩略图的media_id，可以在基础支持-上传多媒体文件接口中获得
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Article.author">
+            <summary>
+            图文消息的作者
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Article.title">
+            <summary>
+            图文消息的标题
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Article.content_source_url">
+            <summary>
+            在图文消息页面点击“阅读原文”后的页面
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Article.content">
+            <summary>
+            图文消息页面的内容，支持HTML标签
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Article.digest">
+            <summary>
+            图文消息的描述
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Article.show_cover_pic">
+            <summary>
+            是否显示封面，1为显示，0为不显示
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.BaseMenu">
+            <summary>
+            基础菜单信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseMenu.type">
+            <summary>
+            菜单的响应动作类型
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseMenu.name">
+            <summary>
+            菜单标题，不超过16个字节，子菜单不超过40个字节
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseMenu.key">
+            <summary>
+            click等点击类型必须 菜单KEY值，用于消息接口推送，不超过128字节
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseMenu.url">
+            <summary>
+            view类型必须  网页链接，用户点击菜单可打开链接，不超过256字节
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.BaseMenu.sub_button">
+            <summary>
+            子菜单
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.MenuEntity">
+            <summary>
+            自定义菜单实体
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Boarding_Pass">
+            <summary>
+            飞机票
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Boarding_Pass.from">
+            <summary>
+            起点
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Boarding_Pass.to">
+            <summary>
+            终点
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Boarding_Pass.flight">
+            <summary>
+            航班
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Boarding_Pass.departure_time">
+            <summary>
+            起飞时间。 Unix时间戳格式
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Boarding_Pass.landing_time">
+            <summary>
+            降落时间。 Unix时间戳格式
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Boarding_Pass.check_in_url">
+            <summary>
+            在线值机的链接
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Boarding_Pass.gate">
+            <summary>
+            登机口
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Boarding_Pass.boarding_time">
+            <summary>
+            登机时间，只显示“时分”不显示日期。按时间戳格式填写。如发生登记时间变更，建议商家实时调用本接口变更
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Boarding_Pass.air_model">
+            <summary>
+            机型。  不超过8个汉字
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Cash">
+            <summary>
+            代金券
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Cash.least_cost">
+            <summary>
+            代金券专用，表示起用金额（单位为分）
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Cash.reduce_cost">
+            <summary>
+            代金券专用，表示减免金额（单位为分）
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Discount">
+            <summary>
+            折扣券
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Discount.discount">
+            <summary>
+            表示打折额度（百分比）。填 30 就是七折
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.General_Coupon">
+            <summary>
+            通用券
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.General_Coupon.default_detail">
+            <summary>
+            描述文本
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Gift">
+            <summary>
+            礼品券
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Gift.gift">
+            <summary>
+            礼品券专用，表示礼品名字。
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Groupon">
+            <summary>
+            团购券
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Groupon.deal_detail">
+            <summary>
+            团购详情
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Lucky_Money">
+            <summary>
+            红包类型为非现金红包，不支持提现
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Meeting_Ticket">
+            <summary>
+            会议门票
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Meeting_Ticket.meeting_detail">
+            <summary>
+            会议详情
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Meeting_Ticket.map_url">
+            <summary>
+            会场导览图
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Member_Card">
+            <summary>
+            会员卡
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Member_Card.supply_bonus">
+            <summary>
+            是否支持积分。如填写 true，积分相关字段均为必填。填写 false，积分字段无需填写。 储值字段处理方式相同。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Member_Card.supply_balance">
+            <summary>
+            是否支持储值，填写 true 或false。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Member_Card.bonus_cleared">
+            <summary>
+            积分清零规则
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Member_Card.bonus_rules">
+            <summary>
+            积分规则
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Member_Card.balance_rules">
+            <summary>
+            储值说明
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Member_Card.prerogative">
+            <summary>
+            特权说明
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Member_Card.bind_old_card_url">
+            <summary>
+            绑定旧卡的 url，与“activate_url”字段二选一必填。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Member_Card.activate_url">
+            <summary>
+            激活会员卡的 url，与“bind_old_card_url”字段二选一必填。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Member_Card.need_push_on_view">
+            <summary>
+            用户点击进入会员卡时是否推送事件
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Movie_Ticket">
+            <summary>
+            电影票
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Movie_Ticket.detail">
+            <summary>
+            detail
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Card.Scenic_Ticket">
+            <summary>
+            景点门票
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Scenic_Ticket.ticket_class">
+            <summary>
+            票类型， 例如平日全票， 套票等。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Card.Scenic_Ticket.guide_url">
+            <summary>
+            导览图 url 
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.CustomArticles">
+            <summary>
+            客服接口图文消息列表
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomArticle.title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomArticle.description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomArticle.url">
+            <summary>
+            图文链接
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomArticle.picurl">
+            <summary>
+            图片链接
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.CustomMusic">
+            <summary>
+            客服音乐消息实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomMusic.musicurl">
+            <summary>
+            音乐链接
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomMusic.hqmusicurl">
+            <summary>
+            高品质音乐链接，wifi环境优先使用该链接播放音乐
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomMusic.thumb_media_id">
+            <summary>
+            缩略图ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomMusic.title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomMusic.description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.CustomVideo">
+            <summary>
+            客服视频消息实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomVideo.media_id">
+            <summary>
+            媒体ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomVideo.thumb_media_id">
+            <summary>
+            缩略图ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomVideo.title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.CustomVideo.description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.IpEntity.ip_list">
+            <summary>
+            ip列表
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.OAuthToken">
+            <summary>
+            网页授权获取access_token时返回的实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OAuthToken.access_token">
+            <summary>
+            网页授权接口调用凭证,注意：此access_token与基础支持的access_token不同
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OAuthToken.expires_in">
+            <summary>
+            access_token接口调用凭证超时时间，单位（秒）
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OAuthToken.refresh_token">
+            <summary>
+            用户刷新access_token
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OAuthToken.openid">
+            <summary>
+            用户唯一标识，请注意，在未关注公众号时，用户访问公众号的网页，也会产生一个用户和公众号唯一的OpenID
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OAuthToken.scope">
+            <summary>
+            用户授权的作用域，使用逗号（,）分隔
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.OAuthToken.unionid">
+            <summary>
+            只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.FormEntity.Name">
+            <summary>
+            表单名
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.FormEntity.Value">
+            <summary>
+            表单值
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.FormEntity.IsFile">
+            <summary>
+            是否是文件
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResArticle.Title">
+            <summary>
+            消息的标题
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResArticle.Description">
+            <summary>
+            消息的描述
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResArticle.PicUrl">
+            <summary>
+            图片链接，支持JPG、PNG格式，较好的效果为大图360*200，小图200*200
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResArticle.Url">
+            <summary>
+            点击图文消息跳转链接
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResMusic.Title">
+            <summary>
+            音乐标题
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResMusic.Description">
+            <summary>
+            音乐描述
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResMusic.MusicUrl">
+            <summary>
+            音乐链接
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResMusic.HQMusicUrl">
+            <summary>
+            高质量音乐链接，WIFI环境优先使用该链接播放音乐
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResMusic.ThumbMediaId">
+            <summary>
+            缩略图的媒体id，通过上传多媒体文件，得到的id
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.ResVideo">
+            <summary>
+            回复视频消息实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResVideo.MediaId">
+            <summary>
+            通过上传多媒体文件，得到的id
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResVideo.Title">
+            <summary>
+            视频消息的标题
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.ResVideo.Description">
+            <summary>
+            视频消息的描述
+            </summary>
+        </member>
+        <member name="T:WxApi.ReceiveEntity.UpLoadInfo">
+            <summary>
+            新增素材时，返回的实体
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UpLoadInfo.type">
+            <summary>
+            媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb，主要用于视频与音乐格式的缩略图）
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UpLoadInfo.media_id">
+            <summary>
+            媒体文件上传后，获取时的唯一标识
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UpLoadInfo.created_at">
+            <summary>
+            媒体文件上传时间戳
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.BaseValue">
+            <summary>
+            基础键值实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.BaseValue.id">
+            <summary>
+            属性ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.BaseValue.vid">
+            <summary>
+            属性值
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.TopFee.Type">
+            <summary>
+            快递类型ID  10000027(平邮)	10000028(快递)	10000029(EMS)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.TopFee.Normal">
+            <summary>
+            默认邮费计算方法
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.TopFee.Custom">
+            <summary>
+            指定地区邮费计算方法
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.NormalFormula">
+            <summary>
+            默认邮费计算方法实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.NormalFormula.StartStandards">
+            <summary>
+            起始计费数量
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.NormalFormula.StartFees">
+            <summary>
+            起始计费金额(单位: 分）
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.NormalFormula.AddStandards">
+            <summary>
+            递增计费数量
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.NormalFormula.AddFees">
+            <summary>
+            递增计费金额(单位 : 分)
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.CustomFormula">
+            <summary>
+            指定地区邮费计算方法实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.CustomFormula.DestCountry">
+            <summary>
+            指定国家
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.CustomFormula.DestProvince">
+            <summary>
+            指定省份
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.CustomFormula.DestCity">
+            <summary>
+            指定城市
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.Product">
+            <summary>
+            商品实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Product.product_base">
+            <summary>
+            商品基本信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Product.sku_list">
+            <summary>
+            sku列表
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Product.attrext">
+            <summary>
+            其他属性
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Product.delivery_info">
+            <summary>
+            运费信息
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.SkuInfo">
+            <summary>
+            sku信息实体
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.Property">
+            <summary>
+            属性键值实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Property.id">
+            <summary>
+            属性ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Property.vid">
+            <summary>
+            属性值
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ProductBase">
+            <summary>
+             商品基本信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductBase.name">
+            <summary>
+            商品名称
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductBase.category_id">
+            <summary>
+            商品分类id
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductBase.main_img">
+            <summary>
+            商品主图(图片需调用图片上传接口获得图片Url填写至此，否则无法添加商品。图片分辨率推荐尺寸为640×600)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductBase.img">
+            <summary>
+            商品图片列表(图片需调用图片上传接口获得图片Url填写至此，否则无法添加商品。图片分辨率推荐尺寸为640×600)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductBase.detail">
+            <summary>
+            商品详情列表，显示在客户端的商品详情页内
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductBase.property">
+            <summary>
+            商品属性列表
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductBase.sku_info">
+            <summary>
+            商品sku定义。如需自定义sku。格式为"$xxx"。如id="$整件库存"  vid="$1000"
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductBase.buy_limit">
+            <summary>
+            用户商品限购数量
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.Detail">
+            <summary>
+            商品详情
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Detail.text">
+            <summary>
+            文字描述
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Detail.img">
+            <summary>
+            图片(图片需调用图片上传接口获得图片Url填写至此，否则无法添加商品)
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ProductSku">
+            <summary>
+            商品SKU信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductSku.sku_id">
+            <summary>
+            sku信息 规则 : id_info的组合个数必须与sku_table个数一致(若商品无sku信息, 即商品为统一规格，则此处赋值为空字符串即可)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductSku.ori_price">
+            <summary>
+            sku原价(单位 : 分)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductSku.price">
+            <summary>
+            sku微信价(单位 : 分, 微信价必须比原价小, 否则添加商品失败)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductSku.icon_url">
+            <summary>
+            sku iconurl(图片需调用图片上传接口获得图片Url)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductSku.quantity">
+            <summary>
+            sku库存
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductSku.product_code">
+            <summary>
+            商家商品编码
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.AttrExt.isPostFree">
+            <summary>
+            是否包邮(0-否, 1-是), 如果包邮商品运费信息delivery_info字段可省略
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.AttrExt.isHasReceipt">
+            <summary>
+            是否提供发票(0-否, 1-是)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.AttrExt.isUnderGuaranty">
+            <summary>
+            是否保修(0-否, 1-是)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.AttrExt.isSupportReplace">
+            <summary>
+            是否支持退换货(0-否, 1-是)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.AttrExt.Location">
+            <summary>
+            商品所在地地址
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.Location">
+            <summary>
+            商品所在地地址
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Location.country">
+            <summary>
+            国家
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Location.province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Location.city">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Location.address">
+            <summary>
+            详细地址
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.DeliveryInfo">
+            <summary>
+            运费信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.DeliveryInfo.delivery_type">
+            <summary>
+            运费类型(0-使用express字段的默认模板, 1-使用template_id代表的邮费模板
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.DeliveryInfo.template_id">
+            <summary>
+            邮费模板ID
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.express">
+            <summary>
+            运费实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.express.id">
+            <summary>
+            快递ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.express.price">
+            <summary>
+            运费(单位 : 分)
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ProductInfo">
+            <summary>
+            商品的所有信息，包括商品ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductInfo.product_id">
+            <summary>
+            商品ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ProductInfo.status">
+            <summary>
+            商品状态(0-全部, 1-上架, 2-下架)
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.Shelf">
+            <summary>
+            货架实体
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Shelf.shelf_id">
+            <summary>
+            货架ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Shelf.shelf_data">
+            <summary>
+            货架信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Shelf.shelf_banner">
+            <summary>
+            货架招牌图片Url(图片需调用图片上传接口获得图片Url填写至此，否则添加货架失败，建议尺寸为640*120，仅控件1-4有banner，控件5没有banner)
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.Shelf.shelf_name">
+            <summary>
+            货架名
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ShelfData.module_infos">
+            <summary>
+            货架信息
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ShelfModule">
+            <summary>
+            货架控件基类
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.OneGroupInfo.filter">
+            <summary>
+            该控件展示商品个数信息
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ShelfModuleOne">
+            <summary>
+            控件一实体。由一个分组组成，展示该分组指定数量的商品列表，可与除控件5之外的控件共用
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.ShelfModuleOne.group_info">
+            <summary>
+            分组信息
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.GroupIds.groups">
+            <summary>
+            分组列表
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ShelfModuleTwo">
+            <summary>
+            控件二实体。是由多个分组组成（最多有4个分组），展示指定分组的名称。可与除控件5之外的控件共用
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.GroupImg.group_id">
+            <summary>
+            分组ID
+            </summary>
+        </member>
+        <member name="P:WxApi.SendEntity.Shop.GroupImg.img">
+            <summary>
+            分组照片(图片需调用图片上传接口获得图片Url填写至此，否则添加货架失败，3个分组建议分辨率分别为: 350*350, 244*172, 244*172)
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ShelfModuleThree">
+            <summary>
+            控件三实体。由一个分组组成，展示指定分组的分组图片。可与除控件5之外的控件共用
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ShelfModuleFour">
+            <summary>
+            控件四实体。由多个分组组成（最多3个分组），展示指定分组的分组图片。可与除控件5之外的控件共用
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.Shop.ShelfModuleFive">
+            <summary>
+            控件5实体。是由多个分组组成，展示指定分组的名称，不可与其他控件联合使用。
+            </summary>
+        </member>
+        <member name="T:WxApi.SendEntity.TemplateKey">
+            <summary>
+            模板消息字段实体
+            </summary>
+        </member>
+        <member name="T:WxApi.Shop.DeliveryManage">
+            <summary>
+            运费管理
+            </summary>
+        </member>
+        <member name="M:WxApi.Shop.DeliveryManage.AddTemplate(WxApi.SendEntity.Shop.DeliveryTemplate,System.String)">
+            <summary>
+            添加运费模版
+            </summary>
+            <param name="template">模版</param>
+        </member>
+        <member name="M:WxApi.Shop.DeliveryManage.DelTemplate(System.String,System.String)">
+            <summary>
+            删除运费模版
+            </summary>
+            <param name="templateId">模板ID</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.DeliveryManage.UpdateTemplate(WxApi.SendEntity.Shop.DeliveryTemplateInfo,System.String)">
+            <summary>
+            更新运费模版
+            </summary>
+            <param name="template">运费模版</param>
+            <param name="templateId">模板ID</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.DeliveryManage.GetTemplateInfo(System.String,System.String)">
+            <summary>
+            获取指定ID的运费模板
+            </summary>
+            <param name="templateId"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.DeliveryManage.GetList(System.String)">
+            <summary>
+            获取所有邮费模板
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxApi.Shop.GoodsManage">
+            <summary>
+            商品管理相关
+            </summary>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.GetChildCategory(System.String,System.String)">
+            <summary>
+            获取指定商品分类的子分类
+            </summary>
+            <param name="accessToken">调用凭据</param>
+            <param name="cate_id">大分类ID(根节点分类id为1)</param>
+            <returns>子分类列表</returns>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.GetsSkuList(System.String,System.String)">
+            <summary>
+            获取子分类的所有SKU
+            </summary>
+            <param name="cate_id">子分类ID</param>
+            <param name="accessToken">调用凭据</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.GetPropertyList(System.String,System.String)">
+             <summary>
+            获取指定分类的所有属性
+             </summary>
+             <param name="cate_id">分类ID</param>
+             <param name="accessToken">调用凭据</param>
+             <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.AddGoods(WxApi.SendEntity.Shop.Product,System.String)">
+            <summary>
+            添加商品
+            </summary>
+            <param name="goods">商品实体</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.DelGoods(System.String,System.String)">
+            <summary>
+            删除商品
+            </summary>
+            <param name="productId">商品ID</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.UpdateGoods(WxApi.SendEntity.Shop.ProductInfo,System.String)">
+            <summary>
+            更新商品
+            </summary>
+            <param name="goods">商品信息</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.GetProductInfo(System.String,System.String)">
+            <summary>
+            根据商品ID获取商品信息
+            </summary>
+            <param name="productId"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.GetProductList(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="accessToken"></param>
+            <param name="status">商品状态(0-全部, 1-上架, 2-下架)</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.UpdateStatus(System.String,System.String,System.String)">
+            <summary>
+            更新商品状态。 （上架or下架）
+            </summary>
+            <param name="productId">商品ID</param>
+            <param name="status">商品上下架标识(0-下架, 1-上架)</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GoodsManage.UpdateStock(System.String,System.String,System.String,System.Int32,System.String)">
+            <summary>
+            增加或减少库存
+            </summary>
+            <param name="productId">商品ID</param>
+            <param name="skuInfo">sku信息,格式"id1:vid1;id2:vid2",如商品为统一规格，则此处赋值为空字符串即可</param>
+            <param name="quantity">增加或减少的库存数量</param>
+            <param name="flag">操作标志。0减少。1增加</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GroupManage.Add(System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            增加分组
+            </summary>
+            <param name="groupName">分组名称</param>
+            <param name="productList">商品ID集合</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GroupManage.Delete(System.String,System.String)">
+            <summary>
+            删除分组
+            </summary>
+            <param name="groupId">分组ID</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GroupManage.UpdateName(System.String,System.String,System.String)">
+            <summary>
+            修改分组名
+            </summary>
+            <param name="groupId">分组ID</param>
+            <param name="groupName">分组名</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GroupManage.UpdateProduct(System.String,System.Collections.Generic.List{WxApi.SendEntity.Shop.ModProduct},System.String)">
+            <summary>
+            修改分组的商品列表
+            </summary>
+            <param name="groupId">分组ID</param>
+            <param name="product">分组的商品集合</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GroupManage.GetList(System.String)">
+            <summary>
+            获取所有分组
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.GroupManage.GetDetail(System.String,System.String)">
+            <summary>
+            根据分组ID获取分组详情
+            </summary>
+            <param name="groupId">分组ID</param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.OrderManage.SetDelivery(System.String,System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            设置订单发货信息
+            </summary>
+            <param name="accessToken">调用凭据</param>
+            <param name="orderId">订单号</param>
+            <param name="deliveryCompany">物流公司ID；当need_delivery为0时，可不填本字段；当need_delivery为1时，该字段不能为空；当need_delivery为1且is_others为1时，本字段填写其它物流公司名称)</param>
+            <param name="deliveryTrackNo">运单ID(当need_delivery为0时，可不填本字段；当need_delivery为1时，该字段不能为空；)</param>
+            <param name="needDelivery">商品是否需要物流(0-不需要，1-需要，无该字段默认为需要物流)</param>
+            <param name="isOthers">是否为其它物流公司(0-否，1-是，无该字段默认为不是其它物流公司)</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Shop.OrderManage.CloseOrder(System.String,System.String)">
+            <summary>
+            关闭订单
+            </summary>
+            <param name="orderId"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxApi.Shop.ShelfManage">
+            <summary>
+            货架管理
+            </summary>
+        </member>
+        <member name="M:WxApi.Shop.ShelfManage.Add(WxApi.SendEntity.Shop.Shelf,System.String)">
+            <summary>
+            添加货架
+            </summary>
+        </member>
+        <member name="T:WxApi.Store">
+            <summary>
+            门店管理接口
+            </summary>
+        </member>
+        <member name="M:WxApi.Store.UploadPic(System.String,System.String)">
+            <summary>
+            上传图片
+            </summary>
+            <param name="filePath"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Store.Add(WxApi.SendEntity.BaseStoreInfo,System.String)">
+            <summary>
+            添加门店
+            </summary>
+            <param name="info">门店信息</param>
+            <param name="accessToken">调用凭据</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Store.GetCategory">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WxApi.TemplateNotice">
+            <summary>
+            模板消息接口
+            </summary>
+        </member>
+        <member name="M:WxApi.TemplateNotice.SetIndustry(System.String,System.String,System.String)">
+            <summary>
+            设置所属行业
+            </summary>
+            <param name="id1">主营行业</param>
+            <param name="id2">副营行业</param>
+            <param name="accessToken">accessToken</param>
+        </member>
+        <member name="M:WxApi.TemplateNotice.GeTemplateId(System.String,System.String)">
+            <summary>
+            获取模板ID
+            </summary>
+            <param name="templateNo">模板编号</param>
+            <param name="accessToken">accessToken</param>
+        </member>
+        <member name="M:WxApi.TemplateNotice.Send(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,WxApi.SendEntity.TemplateKey},System.String,System.String)">
+            <summary>
+            发送模板消息
+            </summary>
+            <param name="touser">要发送的用户的openid</param>
+            <param name="template_id">模板ID</param>
+            <param name="topcolor">消息卡片顶部的颜色</param>
+            <param name="dataKeys">模板字段列表</param>
+            <param name="accessToken">accessToken</param>
+            <param name="url">点击消息卡片跳转的地址。默认为空，如果为空，ios设置会跳转到空白页面，安卓则不跳转</param>
+            <returns>调用成功后，返回的实体的msgid属性指的是此条模板消息的id</returns>
+        </member>
+        <member name="M:WxApi.UserManager.BaseUser.UpdateRemark(System.String,System.String,System.String)">
+            <summary>
+            设置用户备注
+            </summary>
+            <param name="OpenID"></param>
+            <param name="remark"></param>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.UserManager.BaseUser.GetUserList(System.String,System.String)">
+            <summary>
+            获取关注用户列表
+            </summary>
+            <param name="accessToken"></param>
+            <param name="next_openid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.UserManager.OAuth.GetAuthToken(System.String,System.String,System.String)">
+            <summary>
+            获取OAuthToken
+            </summary>
+            <param name="appid"></param>
+            <param name="secret"></param>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.UserManager.OAuth.GetRefreshToken(System.String,System.String)">
+            <summary>
+            刷新OAuthToken
+            </summary>
+            <param name="appid"></param>
+            <param name="refresh_token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.UserManager.OAuth.GetUserInfo(System.String,System.String)">
+            <summary>
+            拉取用户信息(需scope为 snsapi_userinfo)
+            </summary>
+            <param name="authtoken"></param>
+            <param name="openid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.UserManager.OAuth.CheckAuthToken(System.String,System.String)">
+            <summary>
+            检验授权凭证（access_token）是否有效
+            </summary>
+            <param name="authtoken"></param>
+            <param name="openid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxApi.UserManager.UserGroup">
+            <summary>
+            用户分组管理
+            </summary>
+        </member>
+        <member name="M:WxApi.UserManager.UserGroup.QueryAll(System.String)">
+            <summary>
+            查询所有分组
+            </summary>
+            <param name="accessToken">accessToken</param>
+            <returns>分组列表</returns>
+        </member>
+        <member name="M:WxApi.UserManager.UserGroup.QueryByOpenID(System.String,System.String)">
+            <summary>
+            根据OpenID获取用户所在的分组
+            </summary>
+            <param name="OpenID">OpenID</param>
+            <param name="accessToken">accessToken</param>
+        </member>
+        <member name="M:WxApi.UserManager.UserGroup.Update(System.Int32,System.String,System.String)">
+            <summary>
+            修改用户分组
+            </summary>
+            <param name="id">修改的分组ID</param>
+            <param name="name">修改后的分组名</param>
+            <param name="accessToken">accessToken</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.UserManager.UserGroup.UpdateOpenIdToGroup(System.String,System.Int32,System.String)">
+            <summary>
+            移动用户到指定分组
+            </summary>
+            <param name="OpenID">OpenID</param>
+            <param name="to_groupid">需要移动到的分组ID</param>
+            <param name="accessToken">accessToken</param>
+            <returns></returns>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserListEntity.total">
+            <summary>
+            关注该公众账号的总用户数
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserListEntity.count">
+            <summary>
+            拉取的OPENID个数，最大值为10000
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserListEntity.data">
+            <summary>
+            列表数据，OPENID的列表
+            </summary>
+        </member>
+        <member name="P:WxApi.ReceiveEntity.UserListEntity.next_openid">
+            <summary>
+            拉取列表的后一个用户的OPENID
+            </summary>
+        </member>
+        <member name="T:WxApi.Utils">
+            <summary>
+            工具类
+            </summary>
+        </member>
+        <member name="M:WxApi.Utils.HttpGet(System.String)">
+            <summary>
+            HTTP GET方式请求数据.
+            </summary>
+            <param name="url">请求的url</param>
+            <returns>响应信息</returns>
+        </member>
+        <member name="M:WxApi.Utils.HttpPost(System.String,System.String,WxApi.ReceiveEntity.FileStreamInfo@)">
+            <summary>
+            HTTP POST请求URL。
+            </summary>
+            <param name="url">请求的url</param>
+            <param name="param">请求的参数</param>
+            <param name="stream">如果响应的是文件，则此参数表示的是文件流</param>
+        </member>
+        <member name="M:WxApi.Utils.HttpPost(System.String,System.String,System.String,System.String)">
+            <summary>
+            带验证证书的POST请求
+            </summary>
+            <param name="url">请求url</param>
+            <param name="data">请求数据</param>
+            <param name="certpath">证书路径</param>
+            <param name="certpwd">证书密码</param>
+        </member>
+        <member name="M:WxApi.Utils.UnixTimeToTime(System.String)">
+            <summary>
+            unix时间转换为datetime
+            </summary>
+            <param name="timeStamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.GetRequestData">
+            <summary>
+            获取当前请求的数据包内容
+            </summary>
+        </member>
+        <member name="M:WxApi.Utils.GetRequestData(WxApi.MsgEntity.EnterParam)">
+            <summary>
+            获取微信发送过来的数据包。并处理加解密问题。如果进行了加密，则将密文解密后返回，否则直接返回接收到的字符
+            </summary>
+            <param name="param">加解密接入参数</param>
+            <returns>如果进行了加密，则将密文解密后返回，否则直接返回接收到的字符</returns>
+        </member>
+        <member name="M:WxApi.Utils.ConvertObj``1(System.String)">
+            <summary>
+            将微信xml数据转换成实体
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="xmlstr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.ConvertDateTimeInt(System.DateTime)">
+            <summary>
+            datetime转换为unixtime
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.PostResult``1(System.Collections.Generic.List{WxApi.SendEntity.FormEntity},System.String)">
+            <summary>
+            发起post请求，并获取请求返回值
+            </summary>
+            <typeparam name="T">返回值类型</typeparam>
+            <param name="obj">数据实体</param>
+            <param name="url">接口地址</param>
+        </member>
+        <member name="M:WxApi.Utils.PostResult``1(System.Object,System.String)">
+            <summary>
+            发起post请求，并获取请求返回值
+            </summary>
+            <typeparam name="T">返回值类型</typeparam>
+            <param name="obj">数据实体</param>
+            <param name="url">接口地址</param>
+        </member>
+        <member name="M:WxApi.Utils.PostResult``1(System.IO.Stream,System.String)">
+            <summary>
+            以流的方式发起post请求
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="stream"></param>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.GetResult``1(System.String)">
+            <summary>
+            发起Get请求，并获取请求返回值
+            </summary>
+            <typeparam name="T">返回值类型</typeparam>
+            <param name="url">接口地址</param>
+        </member>
+        <member name="M:WxApi.Utils.GetCurrentFullHost">
+            <summary>
+            得到当前完整主机头
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.DownLoadFile(System.String,System.String)">
+            <summary>
+            下载文件
+            </summary>
+            <param name="fileUrl">文件路径.可为网络资源，也可以是文件物理路径</param>
+            <param name="fileName">文件名</param>
+        </member>
+        <member name="M:WxApi.Utils.GetQrCodeStream(System.String,System.Int32)">
+            <summary>
+            生成二维码流
+            </summary>
+            <param name="qrcontent">二维码的内容</param>
+            <param name="size">生成的二维码的尺寸。单位是像素</param>
+            <returns>内存流。可保存为文件，或下载到客户端</returns>
+        </member>
+        <member name="M:WxApi.Utils.GetQrCode(System.String,System.Int32)">
+            <summary>
+            下载二维码
+            </summary>
+            <param name="qrcontent">二维码的内容</param>
+            <param name="size">生成的二维码的尺寸。单位是像素</param>
+        </member>
+        <member name="M:WxApi.Utils.DownLoadSteam(WxApi.ReceiveEntity.FileStreamInfo)">
+            <summary>
+            下载文件流
+            </summary>
+        </member>
+        <member name="M:WxApi.Utils.UrlEncode(System.String)">
+            <summary>
+            URL字符编码
+            </summary>
+        </member>
+        <member name="M:WxApi.Utils.UrlDecode(System.String)">
+            <summary>
+            URL字符解码
+            </summary>
+        </member>
+        <member name="M:WxApi.Utils.GetWxVersion">
+            <summary>
+            获取微信版本。为0时，说明不是微信客户端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.MD5(System.String,System.String)">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="pwd">要加密的字符串</param>
+            <param name="encoding">字符编码方法。默认utf-8</param>
+            <returns>加密后的密文</returns>
+        </member>
+        <member name="M:WxApi.Utils.EntityToDictionary(System.Object,System.Nullable{System.Int32})">
+            <summary>
+            将实体对象转换成键值对。移除值为null的属性
+            </summary>
+            <param name="obj">参数实体</param>
+            <returns>数据键值对</returns>
+        </member>
+        <member name="M:WxApi.Utils.GetPaySign(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            获取支付签名
+            </summary>
+            <param name="dictionary">数据集合</param>
+            <param name="key">支付密钥</param>
+            <returns>签名</returns>
+        </member>
+        <member name="M:WxApi.Utils.GetPaySign(System.Object,System.String)">
+            <summary>
+            获取支付签名
+            </summary>
+            <param name="obj">对象实体</param>
+            <param name="key">支付密钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.ValidSign(System.Object,System.String,System.String)">
+            <summary>
+            验证签名
+            </summary>
+            <param name="obj">参数集实体</param>
+            <param name="sign">签名</param>
+            <param name="key">支付密钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.XmlToEntity``1(System.String)">
+            <summary>
+            将XML字符串转换成对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="xml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.GetIP">
+            <summary>
+            获得当前页面客户端的IP
+            </summary>
+            <returns>当前页面客户端的IP</returns>
+        </member>
+        <member name="M:WxApi.Utils.GetFileStreamInfo(System.String)">
+             <summary>
+            根据文件路径获取文件流信息，包括文件名（支持网络路径）
+             </summary>
+             <param name="filepath">文件路径</param>
+             <returns></returns>
+        </member>
+        <member name="M:WxApi.Utils.GetParamSign(System.Object)">
+            <summary>
+            获取参数值签名
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WxApi.MaterialType">
+            <summary>
+            素材类型枚举
+            </summary>
+        </member>
+        <member name="F:WxApi.MaterialType.image">
+            <summary>
+            图片（image）: 2M，支持bmp/png/jpeg/jpg/gif格式
+            </summary>
+        </member>
+        <member name="F:WxApi.MaterialType.voice">
+            <summary>
+            语音（voice）：5M，播放长度不超过60s，支持mp3/wma/wav/amr格式
+            </summary>
+        </member>
+        <member name="F:WxApi.MaterialType.video">
+            <summary>
+            视频（video）：20MB，支持rm, rmvb, wmv, avi, mpg, mpeg, mp4格式
+            </summary>
+        </member>
+        <member name="F:WxApi.MaterialType.thumb">
+            <summary>
+            缩略图（thumb）：64KB，支持JPG格式
+            </summary>
+        </member>
+        <member name="F:WxApi.MaterialType.news">
+            <summary>
+            图文
+            </summary>
+        </member>
+    </members>
+</doc>

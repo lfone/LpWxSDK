@@ -1,0 +1,11 @@
+J:\测试代码\JsonTest\MyBookCode\WxTest\bin\WxTest.dll.config
+J:\测试代码\JsonTest\MyBookCode\WxTest\bin\WxTest.dll
+J:\测试代码\JsonTest\MyBookCode\WxTest\bin\WxTest.pdb
+J:\测试代码\JsonTest\MyBookCode\WxTest\bin\Newtonsoft.Json.dll
+J:\测试代码\JsonTest\MyBookCode\WxTest\bin\WxApi.dll
+J:\测试代码\JsonTest\MyBookCode\WxTest\bin\WxApi.pdb
+J:\测试代码\JsonTest\MyBookCode\WxTest\bin\Newtonsoft.Json.pdb
+J:\测试代码\JsonTest\MyBookCode\WxTest\bin\Newtonsoft.Json.xml
+J:\测试代码\JsonTest\MyBookCode\WxTest\obj\Release\WxTest.csprojResolveAssemblyReference.cache
+J:\测试代码\JsonTest\MyBookCode\WxTest\obj\Release\WxTest.dll
+J:\测试代码\JsonTest\MyBookCode\WxTest\obj\Release\WxTest.pdb

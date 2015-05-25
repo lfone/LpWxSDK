@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B836CA62-286E-4946-9532-ACCE58BACA6E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WxApi</RootNamespace>
+    <AssemblyName>WxApi</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\WxApi.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.0.0.1, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, PublicKeyToken=e8a75d24b142be49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Gma.QrCodeNet.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthType.cs" />
+    <Compile Include="BaseServices.cs" />
+    <Compile Include="CardType.cs" />
+    <Compile Include="CardVoucher.cs" />
+    <Compile Include="Code.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Code.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Cryptography.cs" />
+    <Compile Include="CustomerServices.cs" />
+    <Compile Include="DataCube.cs" />
+    <Compile Include="EventType.cs" />
+    <Compile Include="GroupSend.cs" />
+    <Compile Include="JsApi.cs" />
+    <Compile Include="KfSessionType.cs" />
+    <Compile Include="MaterialLib.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="MenuType.cs" />
+    <Compile Include="MsgEntity\BaseMenuEventMsg.cs" />
+    <Compile Include="MsgEntity\BaseMsg.cs" />
+    <Compile Include="MsgEntity\BMsg.cs" />
+    <Compile Include="MsgEntity\CardCheckEventMsg.cs" />
+    <Compile Include="MsgEntity\EnterParam.cs" />
+    <Compile Include="MsgEntity\EventMsg.cs" />
+    <Compile Include="MsgEntity\GetCardEventMsg.cs" />
+    <Compile Include="MsgEntity\GroupJobEventMsg.cs" />
+    <Compile Include="MsgEntity\ImgMsg.cs" />
+    <Compile Include="MsgEntity\KfEventMsg.cs" />
+    <Compile Include="MsgEntity\LinkMsg.cs" />
+    <Compile Include="MsgEntity\LocationEventMsg.cs" />
+    <Compile Include="MsgEntity\LocationMenuMsg.cs" />
+    <Compile Include="MsgEntity\LocationMsg.cs" />
+    <Compile Include="MsgEntity\MsgHandlerEntity.cs" />
+    <Compile Include="MsgEntity\OrderEventMsg.cs" />
+    <Compile Include="MsgEntity\PicMenuEventMsg.cs" />
+    <Compile Include="MsgEntity\PoiNotifyEventMsg.cs" />
+    <Compile Include="MsgEntity\ScanMenuEventMsg.cs" />
+    <Compile Include="MsgEntity\ScanQrEventMsg.cs" />
+    <Compile Include="MsgEntity\SubEventMsg.cs" />
+    <Compile Include="MsgEntity\TemplateJobEventMsg.cs" />
+    <Compile Include="MsgEntity\TxtMsg.cs" />
+    <Compile Include="MsgEntity\DelCardEventMsg.cs" />
+    <Compile Include="MsgEntity\VideoMsg.cs" />
+    <Compile Include="MsgEntity\ViewCardEventMsg.cs" />
+    <Compile Include="MsgEntity\VoiceMsg.cs" />
+    <Compile Include="MsgFactory.cs" />
+    <Compile Include="MsgType.cs" />
+    <Compile Include="Pay.cs" />
+    <Compile Include="PayEntity\BasePay.cs" />
+    <Compile Include="PayEntity\BasePayRes.cs" />
+    <Compile Include="PayEntity\CloseOrder.cs" />
+    <Compile Include="PayEntity\CloseOrderRes.cs" />
+    <Compile Include="PayEntity\EditAddress.cs" />
+    <Compile Include="PayEntity\EPayment.cs" />
+    <Compile Include="PayEntity\EPaymentRes.cs" />
+    <Compile Include="PayEntity\SendCoupon.cs" />
+    <Compile Include="PayEntity\JsEntity.cs" />
+    <Compile Include="PayEntity\NativeNotify.cs" />
+    <Compile Include="PayEntity\NativeRes.cs" />
+    <Compile Include="PayEntity\NativeEntity.cs" />
+    <Compile Include="PayEntity\OrderInfo.cs" />
+    <Compile Include="PayEntity\QueryOrder.cs" />
+    <Compile Include="PayEntity\OrderQueryRes.cs" />
+    <Compile Include="PayEntity\QueryRefund.cs" />
+    <Compile Include="PayEntity\QueryRefundRes.cs" />
+    <Compile Include="PayEntity\RedPack.cs" />
+    <Compile Include="PayEntity\RedPackRes.cs" />
+    <Compile Include="PayEntity\ReFund.cs" />
+    <Compile Include="PayEntity\ReFundRes.cs" />
+    <Compile Include="PayEntity\ReverseRes.cs" />
+    <Compile Include="PayEntity\ScanPayEntity.cs" />
+    <Compile Include="PayEntity\SendCouponRes.cs" />
+    <Compile Include="PayEntity\TradeState.cs" />
+    <Compile Include="PayEntity\UnifiedEntity.cs" />
+    <Compile Include="PayEntity\UnifiedRes.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QrCode.cs" />
+    <Compile Include="ReceiveEntity\AccessToken.cs" />
+    <Compile Include="ReceiveEntity\CardApiTicket.cs" />
+    <Compile Include="ReceiveEntity\CardCode.cs" />
+    <Compile Include="ReceiveEntity\CardIds.cs" />
+    <Compile Include="ReceiveEntity\CardInfo.cs" />
+    <Compile Include="ReceiveEntity\CodeInfo.cs" />
+    <Compile Include="ReceiveEntity\ConsumeRes.cs" />
+    <Compile Include="ReceiveEntity\DataCube\ArticleUserReadHour.cs" />
+    <Compile Include="ReceiveEntity\DataCube\ArticleUserRead.cs" />
+    <Compile Include="ReceiveEntity\DataCube\ArticleTotal.cs" />
+    <Compile Include="ReceiveEntity\DataCube\ArticleSummary.cs" />
+    <Compile Include="ReceiveEntity\DataCube\ArticleUserShareHour.cs" />
+    <Compile Include="ReceiveEntity\DataCube\ArticleUserShare.cs" />
+    <Compile Include="ReceiveEntity\CardIdInfo.cs" />
+    <Compile Include="ReceiveEntity\CardQrTicket.cs" />
+    <Compile Include="ReceiveEntity\DataCube\UpstreamMsg.cs" />
+    <Compile Include="ReceiveEntity\DeliveryEntity.cs" />
+    <Compile Include="ReceiveEntity\MemberCardResult.cs" />
+    <Compile Include="ReceiveEntity\PicUrl.cs" />
+    <Compile Include="ReceiveEntity\Shop\DeliveryIDEntity.cs" />
+    <Compile Include="ReceiveEntity\Shop\DeliveryInfoRev.cs" />
+    <Compile Include="ReceiveEntity\Shop\DeliveryList.cs" />
+    <Compile Include="ReceiveEntity\Shop\GoodsCategoryList.cs" />
+    <Compile Include="ReceiveEntity\KfList.cs" />
+    <Compile Include="ReceiveEntity\KfOnLineList.cs" />
+    <Compile Include="ReceiveEntity\Shop\BaseEntity.cs" />
+    <Compile Include="ReceiveEntity\Shop\GroupId.cs" />
+    <Compile Include="ReceiveEntity\Shop\GroupInfo.cs" />
+    <Compile Include="ReceiveEntity\Shop\GroupList.cs" />
+    <Compile Include="ReceiveEntity\Shop\OrderList.cs" />
+    <Compile Include="ReceiveEntity\Shop\OrderRev.cs" />
+    <Compile Include="ReceiveEntity\Shop\PicInfo.cs" />
+    <Compile Include="ReceiveEntity\Shop\ShelfId.cs" />
+    <Compile Include="ReceiveEntity\Shop\ShelfInfo.cs" />
+    <Compile Include="ReceiveEntity\Shop\Shelfs.cs" />
+    <Compile Include="ReceiveEntity\StoreCategory.cs" />
+    <Compile Include="ReceiveEntity\StoreInfo.cs" />
+    <Compile Include="ReceiveEntity\DataCube\UserCumulate.cs" />
+    <Compile Include="ReceiveEntity\DataCube\UserSummary.cs" />
+    <Compile Include="SendEntity\BaseStoreInfo.cs" />
+    <Compile Include="SendEntity\Card\UpdateCardKey.cs" />
+    <Compile Include="SendEntity\Card\CardExt.cs" />
+    <Compile Include="SendEntity\Card\ChooseCard.cs" />
+    <Compile Include="SendEntity\Shop\DeliveryTemplateInfo.cs" />
+    <Compile Include="SendEntity\Shop\ModProduct.cs" />
+    <Compile Include="ReceiveEntity\Shop\ProductId.cs" />
+    <Compile Include="ReceiveEntity\Shop\ProductRevEntity.cs" />
+    <Compile Include="ReceiveEntity\Shop\ProductList.cs" />
+    <Compile Include="ReceiveEntity\Shop\PropertyList.cs" />
+    <Compile Include="ReceiveEntity\Shop\SkuList.cs" />
+    <Compile Include="ReceiveEntity\WaitCaseList.cs" />
+    <Compile Include="ReceiveEntity\KfSessionList.cs" />
+    <Compile Include="ReceiveEntity\KfSessionStatus.cs" />
+    <Compile Include="ReceiveEntity\RecordList.cs" />
+    <Compile Include="SendEntity\AddressSign.cs" />
+    <Compile Include="SendEntity\Card\BaseCard.cs" />
+    <Compile Include="SendEntity\Card\BaseInfo.cs" />
+    <Compile Include="ReceiveEntity\CardColors.cs" />
+    <Compile Include="ReceiveEntity\ImStoreEntity.cs" />
+    <Compile Include="ReceiveEntity\LogoUrlEntity.cs" />
+    <Compile Include="ReceiveEntity\MaterialCount.cs" />
+    <Compile Include="ReceiveEntity\MaterialList.cs" />
+    <Compile Include="ReceiveEntity\MaterialNews.cs" />
+    <Compile Include="ReceiveEntity\FileStreamInfo.cs" />
+    <Compile Include="ReceiveEntity\QueryGroupEntity.cs" />
+    <Compile Include="ReceiveEntity\Stores.cs" />
+    <Compile Include="ReceiveEntity\UserGroupEntity.cs" />
+    <Compile Include="ReceiveEntity\SemanticErr.cs" />
+    <Compile Include="ReceiveEntity\GroupSendEntity.cs" />
+    <Compile Include="ReceiveEntity\GroupStatus.cs" />
+    <Compile Include="ReceiveEntity\GroupUpLoadEntity.cs" />
+    <Compile Include="ReceiveEntity\JsApiTicket.cs" />
+    <Compile Include="ReceiveEntity\QrTicket.cs" />
+    <Compile Include="ReceiveEntity\ShortUrl.cs" />
+    <Compile Include="ReceiveEntity\TemplateID.cs" />
+    <Compile Include="ReceiveEntity\TemplateMsg.cs" />
+    <Compile Include="ReceiveEntity\UserGroups.cs" />
+    <Compile Include="ReceiveEntity\UserInfo.cs" />
+    <Compile Include="SemanticErrCode.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SemanticErrCode.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SendEntity\Article.cs" />
+    <Compile Include="SendEntity\BaseMenu.cs" />
+    <Compile Include="SendEntity\Card\Boarding_Pass.cs" />
+    <Compile Include="SendEntity\Card\Cash.cs" />
+    <Compile Include="SendEntity\Card\Discount.cs" />
+    <Compile Include="SendEntity\Card\General_Coupon.cs" />
+    <Compile Include="SendEntity\Card\Gift.cs" />
+    <Compile Include="SendEntity\Card\Groupon.cs" />
+    <Compile Include="SendEntity\Card\Lucky_Money.cs" />
+    <Compile Include="SendEntity\Card\Meeting_Ticket.cs" />
+    <Compile Include="SendEntity\Card\Member_Card.cs" />
+    <Compile Include="SendEntity\Card\Movie_Ticket.cs" />
+    <Compile Include="SendEntity\Card\Scenic_Ticket.cs" />
+    <Compile Include="SendEntity\CustomArticle.cs" />
+    <Compile Include="SendEntity\CustomMusic.cs" />
+    <Compile Include="SendEntity\CustomVideo.cs" />
+    <Compile Include="ReceiveEntity\ErrorEntity.cs" />
+    <Compile Include="ReceiveEntity\IpEntity.cs" />
+    <Compile Include="ReceiveEntity\OAuthToken.cs" />
+    <Compile Include="SendEntity\FormEntity.cs" />
+    <Compile Include="SendEntity\ResArticle.cs" />
+    <Compile Include="SendEntity\ResMusic.cs" />
+    <Compile Include="SendEntity\ResVideo.cs" />
+    <Compile Include="ReceiveEntity\UpLoadInfo.cs" />
+    <Compile Include="SendEntity\Shop\BaseValue.cs" />
+    <Compile Include="SendEntity\Shop\DeliveryTemplate.cs" />
+    <Compile Include="SendEntity\Shop\Product.cs" />
+    <Compile Include="SendEntity\Shop\ProductInfo.cs" />
+    <Compile Include="SendEntity\Shop\Shelf.cs" />
+    <Compile Include="SendEntity\Shop\ShelfData.cs" />
+    <Compile Include="SendEntity\Shop\ShelfModule.cs" />
+    <Compile Include="SendEntity\TemplateKey.cs" />
+    <Compile Include="Shop\DeliveryManage.cs" />
+    <Compile Include="Shop\GoodsManage.cs" />
+    <Compile Include="Shop\GroupManage.cs" />
+    <Compile Include="Shop\OrderManage.cs" />
+    <Compile Include="Shop\ShelfManage.cs" />
+    <Compile Include="Shop\Common.cs" />
+    <Compile Include="Store.cs" />
+    <Compile Include="TemplateNotice.cs" />
+    <Compile Include="UserManager\BaseUser.cs" />
+    <Compile Include="UserManager\OAuth.cs" />
+    <Compile Include="UserManager\UserGroup.cs" />
+    <Compile Include="ReceiveEntity\UserListEntity.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="MaterialType.cs" />
+    <Compile Include="WXBizMsgCrypt.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Code.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Code.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SemanticErrCode.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SemanticErrCode.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CodeInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dll\Gma.QrCodeNet.Encoding.dll" />
+    <Content Include="dll\Gma.QrCodeNet.Encoding.pdb" />
+    <Content Include="dll\Gma.QrCodeNet.Encoding.XML" />
+    <Content Include="dll\Newtonsoft.Json.dll" />
+    <Content Include="dll\Newtonsoft.Json.pdb" />
+    <Content Include="dll\Newtonsoft.Json.xml" />
+    <None Include="Resources\StoreCategory.txt" />
+    <None Include="Resources\DeliveryCode.txt" />
+    <None Include="Resources\IndustryCode.txt" />
+    <None Include="Resources\ErrCode.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,10 @@
+邮政EMS	Fsearch_code
+申通快递	002shentong
+中通速递	066zhongtong
+圆通速递	056yuantong
+天天快递	042tiantian
+顺丰速运	003shunfeng
+韵达快运	059Yunda
+宅急送	064zhaijisong
+汇通快运	020huitong
+易迅快递	zj001yixun
