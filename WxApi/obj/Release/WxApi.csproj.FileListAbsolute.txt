@@ -1,9 +1,0 @@
-J:\测试代码\JsonTest\MyBookCode\WxApi\bin\Release\WxApi.dll
-J:\测试代码\JsonTest\MyBookCode\WxApi\bin\Release\WxApi.pdb
-J:\测试代码\JsonTest\MyBookCode\WxApi\bin\Release\Newtonsoft.Json.dll
-J:\测试代码\JsonTest\MyBookCode\WxApi\bin\Release\Newtonsoft.Json.pdb
-J:\测试代码\JsonTest\MyBookCode\WxApi\bin\Release\Newtonsoft.Json.xml
-J:\测试代码\JsonTest\MyBookCode\WxApi\obj\Release\WxApi.ErrorCode.resources
-J:\测试代码\JsonTest\MyBookCode\WxApi\obj\Release\WxApi.csproj.GenerateResource.Cache
-J:\测试代码\JsonTest\MyBookCode\WxApi\obj\Release\WxApi.dll
-J:\测试代码\JsonTest\MyBookCode\WxApi\obj\Release\WxApi.pdb
